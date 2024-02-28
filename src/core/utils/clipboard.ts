@@ -1,0 +1,1 @@
+export type LoadedImage = { width: number; height: number; source: string };
