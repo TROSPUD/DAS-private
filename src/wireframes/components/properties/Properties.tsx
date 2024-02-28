@@ -9,9 +9,7 @@ import { Colors } from './Colors';
 import { CustomProperties } from './CustomProperties';
 import { DiagramProperties } from './DiagramProperties';
 import { LayoutProperties } from './LayoutProperties';
-import { MoreProperties } from './MoreProperties';
 import { TransformProperties } from './TransformProperties';
-import { VisualProperties } from './VisualProperties';
 
 const layoutItems: CollapseProps['items'] = [
     {
@@ -24,16 +22,6 @@ const layoutItems: CollapseProps['items'] = [
                 <TransformProperties />
             </>
         ),
-    },
-    {
-        key: 'visual',
-        label: texts.common.visual,
-        children: <VisualProperties />,
-    },
-    {
-        key: 'more',
-        label: texts.common.more,
-        children: <MoreProperties />,
     },
     {
         key: 'custom',
