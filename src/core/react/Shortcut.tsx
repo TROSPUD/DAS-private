@@ -1,6 +1,4 @@
- 
-
-import * as Mousetrap from 'mousetrap';
+import Mousetrap from 'mousetrap';
 import * as React from 'react';
 import { useEffect } from 'react';
 
