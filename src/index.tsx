@@ -13,8 +13,8 @@ const Root = (
     <DndProvider backend={HTML5Backend}>
         <Provider store={store}>
             <Router history={history}>
-                {/* <Route path='/:token?' component={App} /> */}
-                <App />
+                <Route path='/:token?' component={App} />
+                {/* <App /> */}
             </Router>
         </Provider>
     </DndProvider>

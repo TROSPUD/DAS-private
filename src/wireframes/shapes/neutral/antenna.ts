@@ -1,8 +1,4 @@
-import { ConfigurableFactory, DefaultAppearance, Rect2, RenderContext, ShapePlugin, Vec2 } from '@app/wireframes/interface';
-
-const STATE = 'STATE';
-const STATE_NORMAL = 'Normal';
-const STATE_CHECKED = 'Checked';
+import { DefaultAppearance, Rect2, RenderContext, ShapePlugin, Vec2 } from '@app/wireframes/interface';
 
 const DEFAULT_APPEARANCE = {
     [DefaultAppearance.BACKGROUND_COLOR]: 0xbdbdbd,
@@ -10,7 +6,6 @@ const DEFAULT_APPEARANCE = {
     [DefaultAppearance.STROKE_COLOR]: 0xb50202,
     [DefaultAppearance.STROKE_THICKNESS]: 4,
     [DefaultAppearance.TEXT_DISABLED]: true,
-    [STATE]: STATE_CHECKED,
 };
 
 export class Antenna implements ShapePlugin {
@@ -26,24 +21,13 @@ export class Antenna implements ShapePlugin {
         return { x: 30, y: 30 };
     }
 
-    public configurables(factory: ConfigurableFactory) {
-        return [
-            factory.selection(STATE, 'State', [
-                STATE_NORMAL,
-                STATE_CHECKED,
-            ]),
-        ];
-    }
-
     public render(ctx: RenderContext) {
         const border = ctx.shape.strokeThickness;
 
         const radius = Math.min(ctx.rect.width, ctx.rect.height) * 0.5;
 
-        const isUnchecked = ctx.shape.getAppearance(STATE) === STATE_NORMAL;
-
         const circleY = ctx.rect.height * 0.5;
-        const circleX = isUnchecked ? radius : ctx.rect.width - radius;
+        const circleX = ctx.rect.width - radius;
 
         const circleCenter = new Vec2(circleX, circleY);
         const circleSize = radius - border;

@@ -34,7 +34,7 @@ export const loadDiagramInternal =
         return { payload: { stored, requestId } };
     });
 
-export const saveDiagramToFile = 
+export const saveDiagramToFile =
     createAsyncThunk('diagram/save/file', async (_, thunkAPI) => {
         const state = thunkAPI.getState() as EditorStateInStore;
 
@@ -50,30 +50,36 @@ export const saveDiagramToServer =
 
         const tokenToWrite = state.loading.tokenToWrite;
         const tokenToRead = state.loading.tokenToRead;
+        console.log(tokenToRead, tokenToWrite, '<====token')
 
         if (tokenToRead && tokenToWrite) {
+            console.log(tokenToRead, tokenToWrite, '<====token1')
+
             await putDiagram(tokenToRead, tokenToWrite, getSaveState(state));
+
 
             return { tokenToRead, tokenToWrite, update: true, navigate: args.navigate };
         } else {
+            console.log('dave')
             const { readToken, writeToken } = await postDiagram(getSaveState(state));
+            console.log(readToken, writeToken, '<====token2')
 
             return { tokenToRead: readToken, tokenToWrite: writeToken, navigate: args.navigate };
         }
     });
 
 export function loadingMiddleware(history: History): Middleware {
-    const middleware: Middleware = store => next => action => {        
-        if (loadDiagramFromServer.pending.match(action) ||  loadDiagramFromFile.pending.match(action)) {
+    const middleware: Middleware = store => next => action => {
+        if (loadDiagramFromServer.pending.match(action) || loadDiagramFromFile.pending.match(action)) {
             store.dispatch(showToast(texts.common.loadingDiagram, 'loading', action.meta.requestId));
-        } else if ( saveDiagramToServer.pending.match(action) || saveDiagramToFile.pending.match(action)) {
+        } else if (saveDiagramToServer.pending.match(action) || saveDiagramToFile.pending.match(action)) {
             store.dispatch(showToast(texts.common.savingDiagram, 'loading', action.meta.requestId));
         }
 
         try {
             const result = next(action);
 
-            if (newDiagram.match(action) ) {
+            if (newDiagram.match(action)) {
                 if (action.payload.navigate) {
                     history.push('');
                 }
@@ -81,11 +87,11 @@ export function loadingMiddleware(history: History): Middleware {
                 if (action.meta.arg.navigate) {
                     history.push(action.payload.tokenToRead);
                 }
-                
+
                 store.dispatch(loadDiagramInternal(action.payload.stored, action.meta.requestId));
             } else if (loadDiagramFromFile.fulfilled.match(action)) {
                 store.dispatch(loadDiagramInternal(action.payload.stored, action.meta.requestId));
-            } else if (loadDiagramFromServer.rejected.match(action) ||  loadDiagramFromFile.rejected.match(action)) {
+            } else if (loadDiagramFromServer.rejected.match(action) || loadDiagramFromFile.rejected.match(action)) {
                 store.dispatch(showToast(texts.common.loadingDiagramFailed, 'error', action.meta.requestId));
             } else if (loadDiagramInternal.match(action)) {
                 store.dispatch(showToast(texts.common.loadingDiagramDone, 'success', action.payload.requestId));
@@ -96,7 +102,7 @@ export function loadingMiddleware(history: History): Middleware {
 
                 saveRecentDiagrams((store.getState() as LoadingStateInStore).loading.recentDiagrams);
 
-                const content = action.payload.update ? 
+                const content = action.payload.update ?
                     texts.common.savingDiagramDone :
                     texts.common.savingDiagramDoneUrl(`${window.location.protocol}//${window.location.host}/${action.payload.tokenToRead}`);
 
@@ -112,7 +118,7 @@ export function loadingMiddleware(history: History): Middleware {
             if (loadDiagramInternal.match(action)) {
                 store.dispatch(showToast(texts.common.loadingDiagramFailed, 'error', action.payload.requestId));
             }
-            
+
             console.error(ex);
             throw ex;
         }

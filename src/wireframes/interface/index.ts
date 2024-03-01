@@ -176,15 +176,9 @@ export interface ConstraintFactory {
 }
 
 export interface ConfigurableFactory {
-    selection(name: string, label: string, options: string[]): Configurable;
-
-    slider(name: string, label: string, min: number, max: number): Configurable;
-
     number(name: string, label: string, min: number, max: number): Configurable;
 
     text(name: string, label: string): Configurable;
-
-    toggle(name: string, label: string): Configurable;
 
     color(name: string, label: string): Configurable;
 }

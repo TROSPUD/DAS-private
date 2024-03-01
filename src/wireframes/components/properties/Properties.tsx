@@ -1,14 +1,9 @@
- 
-
 import { Collapse } from 'antd';
 import { CollapseProps } from 'antd/lib';
 import classNames from 'classnames';
 import { texts } from '@app/texts';
 import { getDiagram, getSelection, useStore } from '@app/wireframes/model';
-import { Colors } from './Colors';
-import { CustomProperties } from './CustomProperties';
 import { DiagramProperties } from './DiagramProperties';
-import { LayoutProperties } from './LayoutProperties';
 import { TransformProperties } from './TransformProperties';
 
 const layoutItems: CollapseProps['items'] = [
@@ -17,17 +12,10 @@ const layoutItems: CollapseProps['items'] = [
         label: texts.common.layout,
         children: (
             <>
-                <LayoutProperties />
-
                 <TransformProperties />
             </>
         ),
-    },
-    {
-        key: 'custom',
-        label: texts.common.custom,
-        children: <CustomProperties />,
-    },
+    }
 ];
 
 const diagramItems: CollapseProps['items'] = [
@@ -35,12 +23,7 @@ const diagramItems: CollapseProps['items'] = [
         key: 'diagram',
         label: texts.common.diagram,
         children: <DiagramProperties />,
-    },
-    {
-        key: 'colors',
-        label: texts.common.colors,
-        children: <Colors />,
-    },
+    }
 ];
 
 export const Properties = () => {

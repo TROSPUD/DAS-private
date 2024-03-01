@@ -1,0 +1,20 @@
+{
+  "explorer.compactFolders": false,
+  "editor.formatOnSave": true,
+  "prettier.trailingComma": "none",
+  "prettier.singleQuote": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.confirmDelete": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "diffEditor.ignoreTrimWhitespace": false
+}

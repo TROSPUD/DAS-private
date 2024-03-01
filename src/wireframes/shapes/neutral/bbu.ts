@@ -1,4 +1,4 @@
-import { ConfigurableFactory, DefaultAppearance, Rect2, RenderContext, ShapePlugin, Vec2 } from '@app/wireframes/interface';
+import { DefaultAppearance, Rect2, RenderContext, ShapePlugin, Vec2 } from '@app/wireframes/interface';
 
 const STATE = 'STATE';
 const STATE_NORMAL = 'Normal';
@@ -24,15 +24,6 @@ export class Bbu implements ShapePlugin {
 
     public defaultSize() {
         return { x: 30, y: 30 };
-    }
-
-    public configurables(factory: ConfigurableFactory) {
-        return [
-            factory.selection(STATE, 'State', [
-                STATE_NORMAL,
-                STATE_CHECKED,
-            ]),
-        ];
     }
 
     public render(ctx: RenderContext) {

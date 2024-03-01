@@ -26,7 +26,7 @@ export async function putDiagram(readToken: string, writeToken: string, body: an
     }
 }
 
-export async function postDiagram(body: any)  {
+export async function postDiagram(body: any) {
     const response = await fetch(`${SERVER_URL}/`, {
         method: 'POST',
         headers: {
