@@ -1,7 +1,6 @@
 import Icon from '@ant-design/icons'
-import { Button, Dropdown, Menu, MenuItemProps, Tooltip } from 'antd'
+import { Button, Menu, MenuItemProps, Tooltip } from 'antd'
 import { ButtonProps } from 'antd/lib/button'
-import { DropdownButtonProps } from 'antd/lib/dropdown'
 import { MenuItemType } from 'antd/lib/menu/hooks/useItems'
 import * as React from 'react'
 import { isMac, Shortcut, Types } from '@app/core'
@@ -46,44 +45,6 @@ export const ActionMenuButton = React.memo(
               actualDisplayMode === 'IconLabel') && <>{label}</>}
           </Button>
         </Tooltip>
-
-        {shortcut && (
-          <Shortcut disabled={disabled} onPressed={onAction} keys={shortcut} />
-        )}
-      </>
-    )
-  }
-)
-
-export const ActionDropdownButton = React.memo(
-  (props: ActionProps & DropdownButtonProps) => {
-    const { action, displayMode, hideWhenDisabled, ...other } = props
-    const { disabled, label, onAction, icon, shortcut, tooltip } = action
-
-    if (disabled && hideWhenDisabled) {
-      return null
-    }
-
-    const actualDisplayMode = displayMode || 'IconLabel'
-
-    return (
-      <>
-        <Dropdown.Button
-          {...other}
-          size="large"
-          disabled={disabled}
-          onClick={onAction}
-          icon={buildIcon(icon, displayMode)}
-          buttonsRender={([leftButton, rightButton]) => [
-            <Tooltip mouseEnterDelay={1} title={buildTitle(shortcut, tooltip)}>
-              {leftButton}
-            </Tooltip>,
-            React.cloneElement(rightButton as React.ReactElement<any, string>)
-          ]}
-        >
-          {(actualDisplayMode === 'Label' ||
-            actualDisplayMode === 'IconLabel') && <>{label}</>}
-        </Dropdown.Button>
 
         {shortcut && (
           <Shortcut disabled={disabled} onPressed={onAction} keys={shortcut} />

@@ -1,14 +1,8 @@
-import { MenuProps } from 'antd/lib'
 import * as React from 'react'
 import { Title } from '@app/core'
 import { texts } from '@app/texts'
 import { useStore } from '@app/wireframes/model'
-import {
-  ActionDropdownButton,
-  ActionMenuButton,
-  buildMenuItem,
-  useLoading
-} from './../actions'
+import { ActionMenuButton, buildMenuItem, useLoading } from './../actions'
 import { useEffect } from 'react'
 
 export const LoadingMenu = React.memo(() => {
@@ -52,39 +46,34 @@ export const LoadingMenu = React.memo(() => {
     }
   }, [tokenToWrite, editor])
 
-  const saveMenuItems: MenuProps['items'] = [
-    buildMenuItem(forLoading.saveDiagramToFile, 'save')
-  ]
-
   return (
     <>
       {/* <CustomTitle token={tokenToRead} /> */}
 
-      <ActionMenuButton
-        displayMode="IconLabel"
-        action={forLoading.newDiagram}
-      />
+      <ActionMenuButton displayMode="Icon" action={forLoading.newDiagram} />
       <ActionMenuButton
         displayMode="Icon"
         action={forLoading.openDiagramAction}
       />
-
-      <ActionDropdownButton
-        className="menu-dropdown"
-        displayMode="IconLabel"
-        action={forLoading.saveDiagram}
+      <ActionMenuButton
+        displayMode="Icon"
+        action={forLoading.saveDiagramToFile}
+      />
+      <ActionMenuButton
+        style={{ marginLeft: '0.25rem', marginRight: '0.25rem' }}
+        displayMode="Label"
         type="primary"
-        menu={{ items: saveMenuItems }}
+        action={forLoading.saveDiagram}
       />
     </>
   )
 })
 
-const CustomTitle = React.memo(({ token }: { token?: string | null }) => {
-  const title =
-    token && token.length > 0
-      ? `mydraft.cc - Diagram ${token}`
-      : `mydraft.cc - Diagram ${texts.common.unsaved}`
+// const CustomTitle = React.memo(({ token }: { token?: string | null }) => {
+//   const title =
+//     token && token.length > 0
+//       ? `mydraft.cc - Diagram ${token}`
+//       : `mydraft.cc - Diagram ${texts.common.unsaved}`
 
-  return <Title text={title} />
-})
+//   return <Title text={title} />
+// })
