@@ -1,6 +1,6 @@
 # DAS
 
-## What is the tech stack?
+## Tech stack
 
 - Ant design (https://ant.design/)
 - React
@@ -9,7 +9,7 @@
 - Typescript
 - Webpack
 
-## How to run the application?
+## Run the application
 
 Just install node.js and run the following commands in your terminal:
 
@@ -18,9 +18,8 @@ Just install node.js and run the following commands in your terminal:
 
 Go to `https://localhost:3002`
 
-## How to build the application?
+## Build the application
 
     npm i
     npm run build
 
-Copy the files from the `build` folder to your webserver.
