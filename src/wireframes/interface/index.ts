@@ -4,9 +4,9 @@ export { Color, Rect2, Vec2 } from '@app/core/utils';
 
 export type Appearance = { [key: string]: any };
 export type CreatedShape = { renderer: string; size?: { x: number; y: number }; appearance?: Appearance };
-export type ShapeSourceIcon = { type: 'Icon';  text: string; fontFamily: string };
-export type ShapeSourceImage = { type: 'Image';  image: LoadedImage };
-export type ShapeSourceText = { type: 'Text';  text: string };
+export type ShapeSourceIcon = { type: 'Icon'; text: string; fontFamily: string };
+export type ShapeSourceImage = { type: 'Image'; image: LoadedImage };
+export type ShapeSourceText = { type: 'Text'; text: string };
 export type ShapeSourceUrl = { type: 'Url'; url: string };
 export type ShapeSource = ShapeSourceIcon | ShapeSourceImage | ShapeSourceText | ShapeSourceUrl;
 export type Configurable = any;
@@ -63,7 +63,7 @@ export interface ShapeProperties {
     setOpacity(opacity: RendererOpacity): ShapeProperties;
 
     setText(text: RendererText | string): ShapeProperties;
-    
+
     setTextDecoration(decoration: TextDecoration): ShapeProperties;
 }
 
@@ -135,7 +135,7 @@ export const DefaultAppearance = {
     FONT_FAMILY: 'FONT_FAMILY',
     FONT_SIZE: 'FONT_SIZE',
     FOREGROUND_COLOR: 'BACKGROUND_COLOR',
-    ICON_FONT_FAMILY: 'ICON_FONT_FAMILY', 
+    ICON_FONT_FAMILY: 'ICON_FONT_FAMILY',
     LINK: 'LINK',
     OPACITY: 'OPACITY',
     STROKE_COLOR: 'STROKE_COLOR',
@@ -176,6 +176,8 @@ export interface ConstraintFactory {
 }
 
 export interface ConfigurableFactory {
+    selection(name: string, label: string, options: string[]): Configurable;
+
     number(name: string, label: string, min: number, max: number): Configurable;
 
     text(name: string, label: string): Configurable;
