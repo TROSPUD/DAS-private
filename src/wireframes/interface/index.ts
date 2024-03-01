@@ -121,8 +121,6 @@ export interface Shape {
 
     readonly text: string;
 
-    readonly textAlignment: string;
-
     readonly textDisabled: boolean;
 
     readonly renderCache: Record<string, any>;
@@ -131,7 +129,6 @@ export interface Shape {
 }
 
 export const DefaultAppearance = {
-    BACKGROUND_COLOR: 'FOREGROUND_COLOR',
     FONT_FAMILY: 'FONT_FAMILY',
     FONT_SIZE: 'FONT_SIZE',
     FOREGROUND_COLOR: 'BACKGROUND_COLOR',
@@ -151,10 +148,6 @@ export function getPageLink(id: string) {
 
 export function getPageLinkId(link: string) {
     return link.substring(7);
-}
-
-export function isPageLink(link: string | null | undefined) {
-    return link?.indexOf('page://') === 0;
 }
 
 export interface Constraint {

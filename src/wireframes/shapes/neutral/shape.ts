@@ -9,7 +9,6 @@ const SHAPE_TRIANGLE = 'Triangle';
 const SHAPE_RHOMBUS = 'Rhombus';
 
 const DEFAULT_APPEARANCE = {
-    [DefaultAppearance.BACKGROUND_COLOR]: 0xFFFFFF,
     [DefaultAppearance.FONT_SIZE]: CommonTheme.CONTROL_FONT_SIZE,
     [DefaultAppearance.FOREGROUND_COLOR]: 0,
     [DefaultAppearance.STROKE_COLOR]: CommonTheme.CONTROL_BORDER_COLOR,

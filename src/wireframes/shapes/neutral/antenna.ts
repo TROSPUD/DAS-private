@@ -1,7 +1,6 @@
 import { DefaultAppearance, Rect2, RenderContext, ShapePlugin, Vec2 } from '@app/wireframes/interface';
 
 const DEFAULT_APPEARANCE = {
-    [DefaultAppearance.BACKGROUND_COLOR]: 0xbdbdbd,
     [DefaultAppearance.FOREGROUND_COLOR]: 0xb50202,
     [DefaultAppearance.STROKE_COLOR]: 0xb50202,
     [DefaultAppearance.STROKE_THICKNESS]: 4,
