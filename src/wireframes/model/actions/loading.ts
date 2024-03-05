@@ -60,7 +60,6 @@ export const saveDiagramToServer =
 
             return { tokenToRead, tokenToWrite, update: true, navigate: args.navigate };
         } else {
-            console.log('dave')
             const { readToken, writeToken } = await postDiagram(getSaveState(state));
             console.log(readToken, writeToken, '<====token2')
 

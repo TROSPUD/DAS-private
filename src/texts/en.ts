@@ -1,5 +1,3 @@
- 
-
 export const texts = {
     common: {
         about: 'About',

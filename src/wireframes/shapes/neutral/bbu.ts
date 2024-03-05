@@ -41,8 +41,6 @@ export class Bbu implements ShapePlugin {
 
     const state = ctx.shape.getAppearance(STATE);
 
-    console.log(state, '<====type of Amp BBU selected')
-
     const circleY = ctx.rect.height * 0.5;
     const circleX = ctx.rect.width - radius;
 

@@ -8,7 +8,7 @@ export function registerRenderers() {
     RendererService.addRenderer(new AbstractControl(new Antenna()));
     RendererService.addRenderer(new AbstractControl(new Bbu()));
     RendererService.addRenderer(new AbstractControl(new PowerDivider()));
-    RendererService.addRenderer(new AbstractControl(new Label()));
+    // RendererService.addRenderer(new AbstractControl(new Label()));
     RendererService.addRenderer(new AbstractControl(new Raster()));
 
 }

@@ -1,7 +1,8 @@
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
-import { Button, Layout, Tabs, TabsProps } from 'antd'
+import { Button, Layout, TabsProps } from 'antd'
 import classNames from 'classnames'
 import * as React from 'react'
+import { useStore as useReduxStore } from 'react-redux'
 import { useRouteMatch } from 'react-router'
 import { ClipboardContainer, useEventCallback } from '@app/core'
 import {
@@ -28,7 +29,8 @@ import { texts } from './texts'
 import { CustomDragLayer } from './wireframes/components/CustomDragLayer'
 import { PresentationView } from './wireframes/components/PresentationView'
 import { OverlayContainer } from './wireframes/contexts/OverlayContext'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { SiderMenu } from './wireframes/components/menu/SiderMenu'
 
 const { Header, Sider, Content } = Layout
 
@@ -54,11 +56,12 @@ export const App = () => {
   const dispatch = useAppDispatch()
   const route = useRouteMatch<{ token?: string }>()
   const routeToken = route.params.token || null
-  const routeTokenSnapshot = React.useRef(routeToken)
-  const selectedTab = useStore((s) => s.ui.selectedTab)
+  const routeTokenSnapshot = useRef(routeToken)
+
+  // const selectedTab = useStore((s) => s.ui.selectedTab)
   const showLeftSidebar = useStore((s) => s.ui.showLeftSidebar)
   const showRightSidebar = useStore((s) => s.ui.showRightSidebar)
-  const [presenting, setPresenting] = React.useState(false)
+  const [presenting, setPresenting] = useState(false)
 
   useEffect(() => {
     const token = routeTokenSnapshot.current
@@ -69,10 +72,6 @@ export const App = () => {
       dispatch(newDiagram(false))
     }
   }, [dispatch])
-
-  const doSelectTab = useEventCallback((key: string) => {
-    dispatch(selectTab(key))
-  })
 
   const doToggleLeftSidebar = useEventCallback(() => {
     dispatch(toggleLeftSidebar())
@@ -120,13 +119,7 @@ export const App = () => {
             collapsed={!showLeftSidebar}
             collapsedWidth={0}
           >
-            <Tabs
-              type="card"
-              activeKey={selectedTab}
-              items={SidebarTabs}
-              onChange={doSelectTab}
-              destroyInactiveTabPane={true}
-            />
+            <SiderMenu />
           </Sider>
           <Content className="editor-content">
             <EditorView spacing={40} />
