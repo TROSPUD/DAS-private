@@ -89,7 +89,7 @@ export const SiderMenu = () => {
       </Menu.SubMenu>
       <Menu.SubMenu key="recent" title="Recent">
         {orderedRecent.map((item) => (
-          <Menu.Item style={{ height: '80px', paddingLeft: 0 }}>
+          <Menu.Item style={{ height: '80px', paddingLeft: 0 }} key={item.date}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ flex: 6 }}>
                 <div style={{ paddingLeft: '40px' }}>

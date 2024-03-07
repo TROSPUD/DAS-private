@@ -1,9 +1,7 @@
 import { MenuProps } from 'antd/lib';
-import { texts } from '@app/texts';
-import { buildMenuItem, useAlignment, useClipboard, useRemove } from '../actions';
+import { buildMenuItem, useClipboard, useRemove } from '../actions';
 
 export const useContextMenu = (isOpen: boolean) => {
-    const forAlignment = useAlignment();
     const forClipboard = useClipboard();
     const forRemove = useRemove();
 
@@ -15,35 +13,7 @@ export const useContextMenu = (isOpen: boolean) => {
         buildMenuItem(forClipboard.cut, 'clipboardCut'),
         buildMenuItem(forClipboard.copy, 'clipboardCopy'),
         buildMenuItem(forClipboard.paste, 'clipboarPaste'),
-        { type: 'divider' },
         buildMenuItem(forRemove.remove, 'remove'),
-        {
-            label: texts.common.alignment,
-            children: [
-                buildMenuItem(forAlignment.alignHorizontalLeft, 'alignHorizontalLeft'),
-                buildMenuItem(forAlignment.alignHorizontalCenter, 'alignHorizontalCenter'),
-                buildMenuItem(forAlignment.alignHorizontalRight, 'alignHorizontalRight'),
-
-                buildMenuItem(forAlignment.alignVerticalTop, 'alignVerticalTop'),
-                buildMenuItem(forAlignment.alignVerticalCenter, 'alignVerticalCenter'),
-                buildMenuItem(forAlignment.alignVerticalBottom, 'alignVerticalBottom'),
-
-                buildMenuItem(forAlignment.distributeHorizontally, 'distributeHorizontally'),
-                buildMenuItem(forAlignment.distributeVertically, 'distributeVertically'),
-
-            ],
-            key: 'alignment',
-        },
-        {
-            label: texts.common.ordering,
-            children: [
-                buildMenuItem(forAlignment.bringToFront, 'bringToFront'),
-                buildMenuItem(forAlignment.bringForwards, 'bringForwards'),
-                buildMenuItem(forAlignment.sendBackwards, 'sendBackwards'),
-                buildMenuItem(forAlignment.sendToBack, 'sendToBack'),
-            ],
-            key: 'layers',
-        },
     ];
 
     return { items, mode: 'vertical' } as MenuProps;

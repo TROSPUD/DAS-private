@@ -65,6 +65,12 @@ export const LoadingMenu = React.memo(() => {
         type="primary"
         action={forLoading.saveDiagram}
       />
+      <ActionMenuButton
+        style={{ marginLeft: '0.25rem', marginRight: '0.25rem' }}
+        displayMode="Label"
+        type="primary"
+        action={forLoading.generateSolution}
+      />
     </>
   )
 })

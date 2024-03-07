@@ -18,7 +18,7 @@ export function useLoading() {
 
         return false;
     }, [diagrams]);
-    
+
     const openHandler = useOpenFile('.json', file => {
         dispatch(loadDiagramFromFile({ file }));
     });
@@ -69,5 +69,15 @@ export function useLoading() {
         onAction: openHandler,
     }), [openHandler]);
 
-    return { newDiagram: newDiagramAction, openDiagramAction, saveDiagram, saveDiagramToFile: saveDiagramToFileAction };
+    const generateSolution: UIAction = React.useMemo(() => ({
+        disabled: false,
+        icon: 'icon-generate',
+        label: texts.common.generateDiagram,
+        tooltip: texts.common.generateDiagramTooltip,
+        onAction: () => {
+            console.log('generateDiagram')
+        },
+    }), [])
+
+    return { newDiagram: newDiagramAction, openDiagramAction, saveDiagram, saveDiagramToFile: saveDiagramToFileAction, generateSolution };
 }

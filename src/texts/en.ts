@@ -32,6 +32,8 @@ export const texts = {
         foregroundColor: 'Foreground Color',
         group: 'Group',
         groupTooltip: 'Group Items',
+        generateDiagram: 'Generate solution',
+        generateDiagramTooltip: 'Generate DAS solution',
         height: 'Height',
         icons: 'Icons',
         layout: 'Layout',
