@@ -11,7 +11,6 @@ import {
 import { useOverlayContext } from './../contexts/OverlayContext'
 import { CanvasView } from './CanvasView'
 import { NavigateAdorner } from './NavigateAdorner'
-import { QuickbarAdorner } from './QuickbarAdorner'
 import { RenderLayer } from './RenderLayer'
 import { SelectionAdorner } from './SelectionAdorner'
 import { TextAdorner } from './TextAdorner'
@@ -227,16 +226,6 @@ export const Editor = memo((props: EditorProps) => {
               onChangeItemsAppearance={onChangeItemsAppearance}
               selectedDiagram={diagram}
               selectionSet={selectionSet}
-              zoom={zoom}
-            />
-          )}
-
-          {onTransformItems && (
-            <QuickbarAdorner
-              previewStream={renderPreview.current}
-              selectedDiagram={diagram}
-              selectionSet={selectionSet}
-              viewSize={viewSize}
               zoom={zoom}
             />
           )}

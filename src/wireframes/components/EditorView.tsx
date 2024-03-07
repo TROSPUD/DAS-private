@@ -88,6 +88,12 @@ export const EditorViewInner = ({
   )
 
   const doSetPosition = useEventCallback((event: React.MouseEvent) => {
+    console.log(
+      event.nativeEvent.offsetX,
+      'x---',
+      event.nativeEvent.offsetY,
+      'y---'
+    )
     selectedPoint.current = {
       x: event.nativeEvent.offsetX,
       y: event.nativeEvent.offsetY
@@ -111,8 +117,12 @@ export const EditorViewInner = ({
           })
         )
 
+        console.log('copy and paste', x, y)
+
         x += 40
         y += 40
+
+        console.log('copy and paste after', x, y)
       }
     }
   )
@@ -120,6 +130,8 @@ export const EditorViewInner = ({
   useClipboard({
     onPaste: (event) => {
       if (!selectedDiagramId) {
+        console.log('copy and paste')
+
         return
       }
 
@@ -205,6 +217,7 @@ export const EditorViewInner = ({
   const padding = sizeInPx(spacing)
 
   return (
+    // triggered by right-clicking
     <Dropdown
       menu={contextMenu}
       trigger={['contextMenu']}

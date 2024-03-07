@@ -1,4 +1,4 @@
- 
+
 
 import * as React from 'react';
 import { ClipboardCopyEvent, ClipboardPasteEvent, useClipboard as useClipboardProvider } from '@app/core';
@@ -8,7 +8,7 @@ import { getDiagram, getSelection, pasteItems, removeItems, Serializer, useStore
 import { UIAction } from './shared';
 
 const OFFSET = 50;
-const PREFIX = 'my-draft:';
+const PREFIX = 'das:';
 
 export function useClipboard() {
     const dispatch = useAppDispatch();
@@ -17,27 +17,27 @@ export function useClipboard() {
     const selectionSet = useStore(getSelection);
     const canCopy = selectionSet.selection.size > 0;
 
-    const clipboard = useClipboardProvider({ 
+    const clipboard = useClipboardProvider({
         onPaste: (event: ClipboardPasteEvent) => {
             const text = (event.items[0] as any)['text'] as string;
-    
+
             if (selectedDiagram && text && text.indexOf(PREFIX) === 0) {
                 offset.current += OFFSET;
-    
+
                 dispatch(pasteItems(selectedDiagram, text.substring(PREFIX.length), offset.current));
                 return true;
             }
-    
+
             return;
         },
         onCopy: (event: ClipboardCopyEvent) => {
-            if (selectedDiagram) {    
+            if (selectedDiagram) {
                 event.clipboard.set(`${PREFIX}${JSON.stringify(Serializer.serializeSet(selectionSet))}`);
-    
+
                 if (event.isCut) {
                     dispatch(removeItems(selectedDiagram, selectionSet.selectedItems));
                 }
-                
+
                 offset.current = 0;
             }
 

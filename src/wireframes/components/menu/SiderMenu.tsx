@@ -56,7 +56,6 @@ export const SiderMenu = () => {
     })
 
     result.sort((lhs, rhs) => rhs.date - lhs.date)
-    console.log(result, 'orderedRecent')
     return result
   }, [recent])
 
