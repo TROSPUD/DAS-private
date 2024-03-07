@@ -19,7 +19,6 @@ import {
 import {
   loadDiagramFromServer,
   newDiagram,
-  selectTab,
   toggleLeftSidebar,
   toggleRightSidebar,
   useStore
@@ -33,24 +32,6 @@ import { useEffect, useRef, useState } from 'react'
 import { SiderMenu } from './wireframes/components/menu/SiderMenu'
 
 const { Header, Sider, Content } = Layout
-
-const SidebarTabs: TabsProps['items'] = [
-  {
-    key: 'shapes',
-    label: texts.common.shapes,
-    children: <Shapes />
-  },
-  {
-    key: 'pages',
-    label: texts.common.pages,
-    children: <Pages />
-  },
-  {
-    key: 'recent',
-    label: texts.common.recent,
-    children: <Recent />
-  }
-]
 
 export const App = () => {
   const dispatch = useAppDispatch()
