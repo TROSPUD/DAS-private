@@ -1,5 +1,3 @@
- 
-
 import { ImmutableList, ImmutableMap, MathHelper, Rotation, Vec2 } from '@app/core/utils';
 import { Diagram } from './diagram';
 import { DiagramItem } from './diagram-item';
@@ -170,7 +168,7 @@ function readObject(source: Record<string, any>, serializers: PropertySerializer
 
 interface PropertySerializer {
     get(source: any): any;
-    
+
     set(source: any): any;
 }
 

@@ -1,5 +1,3 @@
-
-
 import * as React from 'react';
 import { ClipboardCopyEvent, ClipboardPasteEvent, useClipboard as useClipboardProvider } from '@app/core';
 import { useAppDispatch } from '@app/store';

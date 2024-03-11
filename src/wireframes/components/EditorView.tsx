@@ -100,48 +100,6 @@ export const EditorViewInner = ({
     }
   })
 
-  const doPaste = useEventCallback(
-    (sources: ReadonlyArray<ShapeSource>, x: number, y: number) => {
-      if (!selectedDiagramId) {
-        return
-      }
-
-      const shapes = RendererService.createShapes(sources)
-
-      for (const { appearance, renderer, size } of shapes) {
-        dispatch(
-          addShape(selectedDiagramId, renderer, {
-            position: { x, y },
-            size,
-            appearance
-          })
-        )
-
-        console.log('copy and paste', x, y)
-
-        x += 40
-        y += 40
-
-        console.log('copy and paste after', x, y)
-      }
-    }
-  )
-
-  useClipboard({
-    onPaste: (event) => {
-      if (!selectedDiagramId) {
-        console.log('copy and paste')
-
-        return
-      }
-
-      const x = selectedPoint.current.x
-      const y = selectedPoint.current.y
-
-      doPaste(event.items, x, y)
-    }
-  })
-
   const [, drop] = useDrop({
     accept: [
       NativeTypes.URL,
@@ -172,37 +130,9 @@ export const EditorViewInner = ({
       let x = ((offset?.x || 0) - spacing - componentRect.left) / zoom
       let y = ((offset?.y || 0) - spacing - componentRect.top) / zoom
 
-      const itemType = monitor.getItemType()
-
-      switch (itemType) {
-        case 'DND_ASSET':
-          dispatch(
-            addShape(selectedDiagramId, item['name'], { position: { x, y } })
-          )
-          break
-        case 'DND_ICON':
-          doPaste([{ type: 'Icon', ...item }], x, y)
-          break
-        case NativeTypes.TEXT:
-          doPaste([{ type: 'Text', ...item }], x, y)
-          break
-        case NativeTypes.URL: {
-          const urls: string[] = item.urls
-
-          doPaste(
-            urls.map((url) => ({ type: 'Url', url })),
-            x,
-            y
-          )
-          break
-        }
-        case NativeTypes.FILE: {
-          const files: FileList | File[] = item.files
-
-          doPaste(await loadImagesToClipboardItems(files), x, y)
-          break
-        }
-      }
+      dispatch(
+        addShape(selectedDiagramId, item['name'], { position: { x, y } })
+      )
     }
   })
 

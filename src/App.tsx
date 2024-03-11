@@ -72,75 +72,74 @@ export const App = () => {
 
   return (
     // <OverlayContainer>
-    //     <ClipboardContainer>
-    <>
-      <Layout className="screen-mode">
-        <Header>
-          <div className="top-menu">
-            <img className="logo" src="logo.svg" alt="mydraft.cc" />
-            <div>
-              <HistoryMenu />
-              <span className="menu-separator" />
+    <ClipboardContainer>
+      <>
+        <Layout className="screen-mode">
+          <Header>
+            <div className="top-menu">
+              <img className="logo" src="logo.svg" alt="mydraft.cc" />
+              <div>
+                <HistoryMenu />
+                <span className="menu-separator" />
 
-              <ClipboardMenu />
-              <span className="menu-separator" />
+                <ClipboardMenu />
+                <span className="menu-separator" />
 
-              <UIMenu onPlay={doPresent} />
+                <UIMenu onPlay={doPresent} />
+              </div>
+
+              <div>
+                <LoadingMenu />
+              </div>
             </div>
+          </Header>
+          <Layout className="content">
+            <Sider
+              width={320}
+              className="sidebar-left"
+              collapsed={!showLeftSidebar}
+              collapsedWidth={0}
+            >
+              <SiderMenu />
+            </Sider>
+            <Content className="editor-content">
+              <EditorView spacing={40} />
+            </Content>
+            <Sider
+              width={330}
+              className="sidebar-right"
+              collapsed={!showRightSidebar}
+              collapsedWidth={0}
+            >
+              <Properties />
+            </Sider>
+            <Button
+              icon={showLeftSidebar ? <LeftOutlined /> : <RightOutlined />}
+              className={classNames('toggle-button-left', {
+                visible: showLeftSidebar
+              })}
+              size="small"
+              shape="circle"
+              onClick={doToggleLeftSidebar}
+            />
 
-            <div>
-              <LoadingMenu />
-            </div>
-          </div>
-        </Header>
-        <Layout className="content">
-          <Sider
-            width={320}
-            className="sidebar-left"
-            collapsed={!showLeftSidebar}
-            collapsedWidth={0}
-          >
-            <SiderMenu />
-          </Sider>
-          <Content className="editor-content">
-            <EditorView spacing={40} />
-          </Content>
-          <Sider
-            width={330}
-            className="sidebar-right"
-            collapsed={!showRightSidebar}
-            collapsedWidth={0}
-          >
-            <Properties />
-          </Sider>
-          <Button
-            icon={showLeftSidebar ? <LeftOutlined /> : <RightOutlined />}
-            className={classNames('toggle-button-left', {
-              visible: showLeftSidebar
-            })}
-            size="small"
-            shape="circle"
-            onClick={doToggleLeftSidebar}
-          />
-
-          <Button
-            icon={showRightSidebar ? <RightOutlined /> : <LeftOutlined />}
-            className={classNames('toggle-button-right', {
-              visible: showRightSidebar
-            })}
-            size="small"
-            shape="circle"
-            onClick={doToggleRightSidebar}
-          />
+            <Button
+              icon={showRightSidebar ? <RightOutlined /> : <LeftOutlined />}
+              className={classNames('toggle-button-right', {
+                visible: showRightSidebar
+              })}
+              size="small"
+              shape="circle"
+              onClick={doToggleRightSidebar}
+            />
+          </Layout>
         </Layout>
-      </Layout>
 
-      {presenting && <PresentationView onClose={doEdit} />}
+        {presenting && <PresentationView onClose={doEdit} />}
 
-      <CustomDragLayer />
-    </>
-
-    //     </ClipboardContainer>
+        <CustomDragLayer />
+      </>
+    </ClipboardContainer>
     // </OverlayContainer>
   )
 }
