@@ -37,6 +37,9 @@ export interface EditorProps {
   // The color.
   color: Color
 
+  // The backgroung Image
+  backgroundImg: string
+
   // The optional viewbox.
   viewBox?: Rect2
 
@@ -77,6 +80,7 @@ export interface EditorProps {
 
 export const Editor = memo((props: EditorProps) => {
   const {
+    backgroundImg,
     color,
     diagram,
     isDefaultView,
@@ -167,7 +171,10 @@ export const Editor = memo((props: EditorProps) => {
   return (
     <div
       className="editor"
-      style={{ background: color.toString() }}
+      style={{
+        background: `url(${backgroundImg}) no-repeat center center fixed`,
+        backgroundSize: 'cover'
+      }}
       ref={(element) => (overlayContext.element = element)}
     >
       <CanvasView

@@ -1,5 +1,3 @@
- 
-
 import { ActionReducerMapBuilder, createAction } from '@reduxjs/toolkit';
 import { Color, Types } from '@app/core/utils';
 import { EditorState, RendererService, Transform } from './../internal';
@@ -24,7 +22,7 @@ export function buildAppearance(builder: ActionReducerMapBuilder<EditorState>) {
     return builder
         .addCase(changeColors, (state, action) => {
             const oldColor = Color.fromValue(action.payload.oldColor);
-    
+
             const newColorValue = Color.fromValue(action.payload.newColor);
             const newColorNumber = newColorValue.toNumber();
 

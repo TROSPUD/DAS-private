@@ -1,5 +1,3 @@
- 
-
 import { AnyAction } from 'redux';
 import { Types } from '@app/core/utils';
 import { changeItemsAppearance, transformItems } from './appearance';

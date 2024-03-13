@@ -11,6 +11,7 @@ export const texts = {
         alignVerticalTop: 'Vertical Top',
         apply: 'Apply',
         backgroundColor: 'Background Color',
+        backgroundImg: 'Background Image',
         bringForwards: 'Bring Forwards',
         bringToFront: 'Bring to Front',
         colors: 'Colors',

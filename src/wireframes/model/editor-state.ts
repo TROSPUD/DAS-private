@@ -1,5 +1,3 @@
- 
-
 import { Color, ImmutableList, ImmutableMap, MathHelper, Record, Vec2 } from '@app/core/utils';
 import { Diagram } from './diagram';
 import { UndoableState } from './undoable-state';
@@ -25,6 +23,10 @@ type Props = {
 
     // The color for all diagrams.
     color: Color;
+
+    // The background image of editor
+    backgroundImg?: string;
+
 };
 
 export type InitialEditorProps = {
@@ -39,6 +41,10 @@ export type InitialEditorProps = {
 
     // The color for all diagrams.
     color?: Color;
+
+    // The background image of editor
+    backgroundImg?: string;
+
 };
 
 export class EditorState extends Record<Props> {
@@ -66,19 +72,24 @@ export class EditorState extends Record<Props> {
         return this.get('size');
     }
 
+    public get backgroundImg() {
+        return this.get('backgroundImg')
+    }
+
     public get orderedDiagrams(): ReadonlyArray<Diagram> {
         return this.findDiagrams(this.diagramIds.values);
     }
 
     public static create(setup: InitialEditorProps = {}): EditorState {
-        const { color, diagrams, diagramIds, size } = setup;
+        const { color, diagrams, diagramIds, size, backgroundImg } = setup;
 
         const props: Props = {
-            color: color || Color.WHITE,
+            color: color || Color.BLUE,
             diagrams: ImmutableMap.of(diagrams),
             diagramIds: ImmutableList.of(diagramIds),
             id: MathHelper.guid(),
             size: size || new Vec2(1000, 1000),
+            backgroundImg: backgroundImg || '',
         };
 
         return new EditorState(props);
@@ -94,7 +105,7 @@ export class EditorState extends Record<Props> {
                 result.push(item);
             }
         }
-        
+
         return result;
     }
 
@@ -104,6 +115,10 @@ export class EditorState extends Record<Props> {
 
     public changeColor(color: Color) {
         return this.set('color', color);
+    }
+
+    public changeBackgroundImg(backgroundImg: string) {
+        return this.set('backgroundImg', backgroundImg);
     }
 
     public moveDiagram(diagramId: string, index: number) {

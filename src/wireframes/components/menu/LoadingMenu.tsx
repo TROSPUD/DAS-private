@@ -1,17 +1,16 @@
-import * as React from 'react'
 import { Title } from '@app/core'
 import { texts } from '@app/texts'
 import { useStore } from '@app/wireframes/model'
 import { ActionMenuButton, buildMenuItem, useLoading } from './../actions'
-import { useEffect } from 'react'
+import { memo, useEffect, useRef } from 'react'
 
-export const LoadingMenu = React.memo(() => {
+export const LoadingMenu = memo(() => {
   const forLoading = useLoading()
   const editor = useStore((s) => s.editor)
   const tokenToRead = useStore((s) => s.loading.tokenToRead)
   const tokenToWrite = useStore((s) => s.loading.tokenToWrite)
-  const saveTimer = React.useRef<any>()
-  const saveAction = React.useRef(forLoading.saveDiagram)
+  const saveTimer = useRef<any>()
+  const saveAction = useRef(forLoading.saveDiagram)
 
   saveAction.current = forLoading.saveDiagram
 
@@ -59,6 +58,7 @@ export const LoadingMenu = React.memo(() => {
         displayMode="Icon"
         action={forLoading.saveDiagramToFile}
       />
+
       <ActionMenuButton
         style={{ marginLeft: '0.25rem', marginRight: '0.25rem' }}
         displayMode="Label"

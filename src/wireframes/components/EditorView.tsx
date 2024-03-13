@@ -30,6 +30,7 @@ import { DiagramRef, ItemsRef } from '../model/actions/utils'
 import { ShapeSource } from './../interface'
 import { useContextMenu } from './context-menu'
 import './EditorView.scss'
+import { useEffect, useRef, useState } from 'react'
 
 export interface EditorViewProps {
   // The spacing.
@@ -51,18 +52,22 @@ export const EditorViewInner = ({
   spacing
 }: EditorViewProps & { diagram: Diagram }) => {
   const dispatch = useAppDispatch()
-  const [menuVisible, setMenuVisible] = React.useState(false)
+  const [menuVisible, setMenuVisible] = useState(false)
   const editor = useStore(getEditor)
   const editorColor = editor.color
   const editorSize = editor.size
   const masterDiagram = useStore(getMasterDiagram)
-  const renderRef = React.useRef<any>()
-  const selectedPoint = React.useRef({ x: 0, y: 0 })
+  const renderRef = useRef<any>()
+  const selectedPoint = useRef({ x: 0, y: 0 })
   const selectedDiagramId = useStore(getDiagramId)
   const state = useStore((s) => s)
   const zoom = useStore((s) => s.ui.zoom)
   const zoomedSize = editorSize.mul(zoom)
   const contextMenu = useContextMenu(menuVisible)
+
+  useEffect(() => {
+    console.log(editor, '<----editor state')
+  }, [editor])
 
   const doChangeItemsAppearance = useEventCallback(
     (diagram: DiagramRef, visuals: ItemsRef, key: string, value: any) => {
@@ -160,6 +165,7 @@ export const EditorViewInner = ({
           ref={renderRef}
         >
           <Editor
+            backgroundImg={editor.backgroundImg || ''}
             color={editorColor}
             diagram={diagram}
             masterDiagram={masterDiagram}

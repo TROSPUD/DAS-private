@@ -1,5 +1,3 @@
- 
-
 import { ActionReducerMapBuilder, createAction } from '@reduxjs/toolkit';
 import { Color, MathHelper, Vec2 } from '@app/core/utils';
 import { Diagram, EditorState } from './../internal';
@@ -42,13 +40,18 @@ export const setDiagramMaster =
 
 export const changeSize =
     createAction('editor/size', (width: number, height: number) => {
-        return { payload:  { width, height } };
+        return { payload: { width, height } };
     });
 
 export const changeColor =
     createAction('editor/color', (color: Color) => {
-        return { payload:  { color: color.toString() } };
+        return { payload: { color: color.toString() } };
     });
+
+export const changeBackgroundImg =
+    createAction('editor/backgroundImg', (backgroundImg: string) => {
+        return { payload: { backgroundImg } }
+    })
 
 export function buildDiagrams(builder: ActionReducerMapBuilder<EditorState>) {
     return builder
@@ -86,6 +89,11 @@ export function buildDiagrams(builder: ActionReducerMapBuilder<EditorState>) {
             const { color } = action.payload;
 
             return state.changeColor(Color.fromString(color));
+        })
+        .addCase(changeBackgroundImg, (state, action) => {
+            const { backgroundImg } = action.payload;
+
+            return state.changeBackgroundImg(backgroundImg);
         })
         .addCase(duplicateDiagram, (state, action) => {
             const { diagramId } = action.payload;
