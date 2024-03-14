@@ -6,7 +6,9 @@ import {
   Diagram,
   DiagramItem,
   DiagramItemSet,
-  Transform
+  getEditor,
+  Transform,
+  useStore
 } from '@app/wireframes/model'
 import { useOverlayContext } from './../contexts/OverlayContext'
 import { CanvasView } from './CanvasView'
@@ -96,7 +98,7 @@ export const Editor = memo((props: EditorProps) => {
     zoom,
     zoomedSize
   } = props
-
+  const editor = useStore(getEditor)
   const adornerSelectLayer = useRef<svg.Container>()
   const adornerTransformLayer = useRef<svg.Container>()
   const diagramTools = useRef<svg.Element>()
@@ -171,10 +173,6 @@ export const Editor = memo((props: EditorProps) => {
   return (
     <div
       className="editor"
-      style={{
-        background: `url(${backgroundImg}) no-repeat center center fixed`,
-        backgroundSize: 'cover'
-      }}
       ref={(element) => (overlayContext.element = element)}
     >
       <CanvasView
@@ -183,6 +181,7 @@ export const Editor = memo((props: EditorProps) => {
         viewSize={viewSize}
         zoom={zoom}
         zoomedSize={zoomedSize}
+        backgroundImg={editor.backgroundImg || ''}
       />
 
       {interactionMainService && diagram && (

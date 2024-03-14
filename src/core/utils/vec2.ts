@@ -1,9 +1,14 @@
- 
-
 import { MathHelper } from './math-helper';
 import { Rotation } from './rotation';
 
 export class Vec2 {
+    public x: number;
+    public y: number;
+
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
     public static readonly ZERO = new Vec2(0, 0);
 
     public static readonly ONE = new Vec2(1, 1);
@@ -19,12 +24,7 @@ export class Vec2 {
         return this.x * this.x + this.y * this.y;
     }
 
-    constructor(
-        public readonly x: number,
-        public readonly y: number,
-    ) {
-        Object.freeze(this);
-    }
+
 
     public equals(v: Vec2): boolean {
         return Vec2.equals(this, v);

@@ -63,6 +63,7 @@ export const EditorViewInner = ({
   const state = useStore((s) => s)
   const zoom = useStore((s) => s.ui.zoom)
   const zoomedSize = editorSize.mul(zoom)
+  console.log(zoomedSize, '<---zoom sioz')
   const contextMenu = useContextMenu(menuVisible)
 
   useEffect(() => {
@@ -146,8 +147,34 @@ export const EditorViewInner = ({
   const zoomedOuterWidth = 2 * spacing + zoomedSize.x
   const zoomedOuterHeight = 2 * spacing + zoomedSize.y
 
+  // store dimension of image
+  const [imageSize, setImageSize] = useState({
+    width: zoomedOuterWidth,
+    height: zoomedOuterHeight
+  })
+
+  useEffect(() => {
+    const img = new Image()
+
+    img.onload = function (event) {
+      let imgElement = event.target as HTMLImageElement
+      setImageSize({
+        width: imgElement.naturalWidth,
+        height: imgElement.naturalHeight
+      })
+    }
+
+    img.src = editor.backgroundImg || '' // 你的图片url
+  }, [editor.backgroundImg]) // 当图片url发生变化时重新运行useEffect
+
+  // 计算新的宽高
+  const newHeight = zoomedOuterWidth * (imageSize.height / imageSize.width)
+  const newEditorHeight = zoomedSize.y * (imageSize.height / imageSize.width)
+  zoomedSize.y = newEditorHeight
+  console.log(newHeight, zoomedSize, '<----caculate new height')
+
   const w = sizeInPx(zoomedOuterWidth)
-  const h = sizeInPx(zoomedOuterHeight)
+  const h = sizeInPx(newHeight)
 
   const padding = sizeInPx(spacing)
 
