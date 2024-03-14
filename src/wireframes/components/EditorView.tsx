@@ -63,12 +63,7 @@ export const EditorViewInner = ({
   const state = useStore((s) => s)
   const zoom = useStore((s) => s.ui.zoom)
   const zoomedSize = editorSize.mul(zoom)
-  console.log(zoomedSize, '<---zoom sioz')
   const contextMenu = useContextMenu(menuVisible)
-
-  useEffect(() => {
-    console.log(editor, '<----editor state')
-  }, [editor])
 
   const doChangeItemsAppearance = useEventCallback(
     (diagram: DiagramRef, visuals: ItemsRef, key: string, value: any) => {
@@ -94,12 +89,6 @@ export const EditorViewInner = ({
   )
 
   const doSetPosition = useEventCallback((event: React.MouseEvent) => {
-    console.log(
-      event.nativeEvent.offsetX,
-      'x---',
-      event.nativeEvent.offsetY,
-      'y---'
-    )
     selectedPoint.current = {
       x: event.nativeEvent.offsetX,
       y: event.nativeEvent.offsetY
@@ -171,7 +160,6 @@ export const EditorViewInner = ({
   const newHeight = zoomedOuterWidth * (imageSize.height / imageSize.width)
   const newEditorHeight = zoomedSize.y * (imageSize.height / imageSize.width)
   zoomedSize.y = newEditorHeight
-  console.log(newHeight, zoomedSize, '<----caculate new height')
 
   const w = sizeInPx(zoomedOuterWidth)
   const h = sizeInPx(newHeight)

@@ -177,8 +177,6 @@ export function useClipboard(props?: ClipboardProps) {
     context.onPaste.push(doPaste)
 
     return () => {
-      console.log(context, 'use clip clipboard')
-
       context.onCopy.splice(context.onCopy.indexOf(doCopy), 1)
       context.onPaste.splice(context.onPaste.indexOf(doPaste), 1)
     }
