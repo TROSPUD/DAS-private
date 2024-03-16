@@ -41,7 +41,6 @@ export const UploadImage = () => {
         if (info.file.status === 'done') {
           message.success(`${info.file.name} file uploaded successfully`)
           const base = await getBase64(info.file.originFileObj)
-          console.log(base, '<-----bbbbbbb')
           doChangeBackgroundImg(base)
         } else if (info.file.status === 'error') {
           message.error(`${info.file.name} file upload failed.`)
