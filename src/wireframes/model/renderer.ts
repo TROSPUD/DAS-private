@@ -1,5 +1,3 @@
- 
-
 import { ShapePlugin, Size } from './../interface';
 import { DiagramItem, InitialShapeProps } from './diagram-item';
 

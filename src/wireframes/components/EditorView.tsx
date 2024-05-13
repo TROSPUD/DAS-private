@@ -93,6 +93,11 @@ export const EditorViewInner = ({
       x: event.nativeEvent.offsetX,
       y: event.nativeEvent.offsetY
     }
+    console.log(
+      selectedPoint.current.x,
+      selectedPoint.current.y,
+      '<---select point'
+    )
   })
 
   const [, drop] = useDrop({
@@ -124,6 +129,8 @@ export const EditorViewInner = ({
 
       let x = ((offset?.x || 0) - spacing - componentRect.left) / zoom
       let y = ((offset?.y || 0) - spacing - componentRect.top) / zoom
+
+      console.log(x, y, '<-----drop position')
 
       dispatch(
         addShape(selectedDiagramId, item['name'], { position: { x, y } })

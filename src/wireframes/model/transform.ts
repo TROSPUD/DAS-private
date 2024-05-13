@@ -1,5 +1,3 @@
- 
-
 /* eslint-disable no-multi-assign */
 
 import { Rect2, Rotation, Vec2 } from '@app/core/utils';

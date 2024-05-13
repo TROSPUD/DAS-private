@@ -29,6 +29,8 @@ export function createItemsAction<T extends {}>(diagram: DiagramRef, items: Item
         }
     }
 
+    console.log(result, '<----select result')
+
     return result;
 }
 
@@ -46,6 +48,7 @@ export function createDiagramAction<T extends {}>(diagram: DiagramRef, action?: 
     if (action) {
         Object.assign(result, action);
     }
+    console.log(result, '<----resul')
 
     return result;
 }

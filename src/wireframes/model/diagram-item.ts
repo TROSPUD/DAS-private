@@ -1,4 +1,4 @@
- 
+
 
 import { ImmutableList, ImmutableMap, MathHelper, Record, Rotation } from '@app/core/utils';
 import { DefaultAppearance, Shape } from '@app/wireframes/interface';
@@ -242,7 +242,7 @@ export class DiagramItem extends Record<Props> implements Shape {
         return this.set('name', name);
     }
 
-    public replaceAppearance(appearance:ImmutableMap<any>) {
+    public replaceAppearance(appearance: ImmutableMap<any>) {
         if (this.type === 'Group' || !appearance) {
             return this;
         }
@@ -277,7 +277,7 @@ export class DiagramItem extends Record<Props> implements Shape {
     public bounds(diagram: Diagram): Transform {
         if (this.type === 'Group') {
             this.cachedBounds ||= {};
-        
+
             let cacheId = diagram.instanceId;
             let cached = this.cachedBounds[cacheId];
 

@@ -1,5 +1,3 @@
- 
-
 /* eslint-disable @typescript-eslint/no-loop-func */
 
 import { ActionReducerMapBuilder, createAction } from '@reduxjs/toolkit';
@@ -74,7 +72,7 @@ export function buildItems(builder: ActionReducerMapBuilder<EditorState>) {
 
                     return item.transformByBounds(boundsOld, boundsNew);
                 });
-                
+
                 diagram = diagram.selectItems(set.rootIds);
 
                 return diagram;
@@ -85,6 +83,7 @@ export function buildItems(builder: ActionReducerMapBuilder<EditorState>) {
 
             return state.updateDiagram(diagramId, diagram => {
                 const rendererInstance = RendererService.get(renderer);
+                console.log(RendererService, rendererInstance, '<-----render service')
 
                 if (!rendererInstance) {
                     throw new Error(`Cannot find renderer for ${renderer}.`);
@@ -98,11 +97,11 @@ export function buildItems(builder: ActionReducerMapBuilder<EditorState>) {
                     id,
                     transform: new Transform(
                         new Vec2(
-                            (position?.x || 0) + 0.5 * initialSize.x, 
+                            (position?.x || 0) + 0.5 * initialSize.x,
                             (position?.y || 0) + 0.5 * initialSize.y),
                         new Vec2(
                             initialSize.x,
-                            initialSize.y), 
+                            initialSize.y),
                         Rotation.ZERO),
                     appearance: { ...defaultAppearance || {}, ...appearance },
                 };
@@ -135,7 +134,7 @@ export function calculateSelection(items: ReadonlyArray<DiagramItem>, diagram: D
         return item;
     }
 
-    if (isSingleSelection) {        
+    if (isSingleSelection) {
         if (items.length === 1) {
             const single = items[0];
 
