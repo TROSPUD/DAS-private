@@ -1,4 +1,4 @@
- 
+
 
 import * as svg from '@svgdotjs/svg.js';
 import { Color, sizeInPx, SVGHelper } from '@app/core/utils';
@@ -52,7 +52,7 @@ export class InteractionOverlays {
 
             // The label dimensions needs to be calculated based on the zoom factor.
             const labelOffset = 6 / this.zoom;
-    
+
             for (const position of line.positions) {
                 const x = Math.round(position.x);
                 const y = Math.round(position.y);
@@ -65,7 +65,7 @@ export class InteractionOverlays {
 
     public renderYLine(line: SnapLine) {
         const lineWidth = 1 / this.zoom;
-    
+
         if (!line.positions) {
             // Use rounding at the propery side and a offset of 0.5 pixels to have clear lines.
             const y = getLinePosition(line, lineWidth);
@@ -75,7 +75,7 @@ export class InteractionOverlays {
             const dy = line.diff.y;
 
             const labelOffset = 6 / this.zoom;
-    
+
             for (const position of line.positions) {
                 const x = Math.round(position.x);
                 const y = Math.round(position.y);
@@ -105,6 +105,7 @@ export class InteractionOverlays {
 
         line.plot(x1, y1, x2, y2).stroke({ width, color });
         this.indexLines++;
+
     }
 
     private renderLabel(x: number, y: number, text: string, color: string, fontSize = 16, centerX = false, centerY = false, padding = 4) {
@@ -180,6 +181,7 @@ export class InteractionOverlays {
 
         // Increment by one because we create one group per label.
         this.indexLabels += 1;
+
     }
 
     public reset() {

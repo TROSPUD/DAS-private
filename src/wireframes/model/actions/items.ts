@@ -81,6 +81,8 @@ export function buildItems(builder: ActionReducerMapBuilder<EditorState>) {
         .addCase(addShape, (state, action) => {
             const { diagramId, appearance, id, position, renderer, size } = action.payload;
 
+            console.log(position, 'add drop position')
+
             return state.updateDiagram(diagramId, diagram => {
                 const rendererInstance = RendererService.get(renderer);
                 console.log(RendererService, rendererInstance, '<-----render service')

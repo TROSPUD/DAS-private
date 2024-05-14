@@ -78,6 +78,7 @@ export interface EditorProps {
     oldBounds: Transform,
     newBounds: Transform
   ) => any
+  doSetPosition: (event: React.MouseEvent) => void
 }
 
 export const Editor = memo((props: EditorProps) => {
@@ -92,12 +93,14 @@ export const Editor = memo((props: EditorProps) => {
     onRender,
     onSelectItems,
     onTransformItems,
+    doSetPosition,
     selectionSet,
     viewBox,
     viewSize,
     zoom,
     zoomedSize
   } = props
+  console.log(viewBox, '<--viewbox', viewSize, '<---viewsize')
   const editor = useStore(getEditor)
   const adornerSelectLayer = useRef<svg.Container>()
   const adornerTransformLayer = useRef<svg.Container>()
@@ -174,6 +177,7 @@ export const Editor = memo((props: EditorProps) => {
     <div
       className="editor"
       ref={(element) => (overlayContext.element = element)}
+      onClick={doSetPosition}
     >
       <CanvasView
         onInit={doInit}

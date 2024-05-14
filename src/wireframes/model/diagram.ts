@@ -1,6 +1,7 @@
 import { ImmutableList, ImmutableMap, ImmutableSet, MathHelper, Record, Types } from '@app/core/utils';
 import { DiagramItem } from './diagram-item';
 import { DiagramItemSet } from './diagram-item-set';
+import { Empty } from 'antd';
 
 type Items = ImmutableMap<DiagramItem>;
 type ItemIds = ImmutableList<string>;
@@ -161,8 +162,8 @@ export class Diagram extends Record<Props> {
     }
 
     public addShape(shape: DiagramItem) {
+        // 检查是否存在同ID的图形
         if (!shape || this.items.get(shape.id)) {
-            console.log('add shape this')
             return this;
         }
 
@@ -171,7 +172,6 @@ export class Diagram extends Record<Props> {
 
             if (update.items !== this.items) {
                 update.itemIds = update.itemIds.add(shape.id);
-                console.log(update.items, update.itemIds, '<---updtae item add shape')
             }
         });
     }
@@ -198,29 +198,29 @@ export class Diagram extends Record<Props> {
         }, 'SameParent');
     }
 
-    public bringToFront(ids: ReadonlyArray<string>) {
-        return this.arrange(ids, update => {
-            update.itemIds = update.itemIds.bringToFront(ids);
-        }, 'SameParent');
-    }
+    // public bringToFront(ids: ReadonlyArray<string>) {
+    //     return this.arrange(ids, update => {
+    //         update.itemIds = update.itemIds.bringToFront(ids);
+    //     }, 'SameParent');
+    // }
 
-    public bringForwards(ids: ReadonlyArray<string>) {
-        return this.arrange(ids, update => {
-            update.itemIds = update.itemIds.bringForwards(ids);
-        }, 'SameParent');
-    }
+    // public bringForwards(ids: ReadonlyArray<string>) {
+    //     return this.arrange(ids, update => {
+    //         update.itemIds = update.itemIds.bringForwards(ids);
+    //     }, 'SameParent');
+    // }
 
-    public sendToBack(ids: ReadonlyArray<string>) {
-        return this.arrange(ids, update => {
-            update.itemIds = update.itemIds.sendToBack(ids);
-        }, 'SameParent');
-    }
+    // public sendToBack(ids: ReadonlyArray<string>) {
+    //     return this.arrange(ids, update => {
+    //         update.itemIds = update.itemIds.sendToBack(ids);
+    //     }, 'SameParent');
+    // }
 
-    public sendBackwards(ids: ReadonlyArray<string>) {
-        return this.arrange(ids, update => {
-            update.itemIds = update.itemIds.sendBackwards(ids);
-        }, 'SameParent');
-    }
+    // public sendBackwards(ids: ReadonlyArray<string>) {
+    //     return this.arrange(ids, update => {
+    //         update.itemIds = update.itemIds.sendBackwards(ids);
+    //     }, 'SameParent');
+    // }
 
     public group(groupId: string, ids: ReadonlyArray<string>) {
         return this.arrange(ids, update => {
@@ -240,8 +240,6 @@ export class Diagram extends Record<Props> {
 
     // used when paste item
     public addItems(set: DiagramItemSet): Diagram {
-        console.log('add item terminal')
-
         if (!set.canAdd(this)) {
             return this;
         }

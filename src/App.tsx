@@ -1,8 +1,6 @@
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
-import { Button, Layout, TabsProps } from 'antd'
+import { Button, Layout } from 'antd'
 import classNames from 'classnames'
-import * as React from 'react'
-import { useStore as useReduxStore } from 'react-redux'
 import { useRouteMatch } from 'react-router'
 import { ClipboardContainer, useEventCallback } from '@app/core'
 import {
@@ -10,10 +8,8 @@ import {
   EditorView,
   HistoryMenu,
   LoadingMenu,
-  Pages,
   Properties,
   Recent,
-  Shapes,
   UIMenu
 } from '@app/wireframes/components'
 import {
@@ -30,6 +26,7 @@ import { PresentationView } from './wireframes/components/PresentationView'
 import { OverlayContainer } from './wireframes/contexts/OverlayContext'
 import { useEffect, useRef, useState } from 'react'
 import { SiderMenu } from './wireframes/components/menu/SiderMenu'
+import '../src/wireframes/components/assets/Shapes.scss'
 
 const { Header, Sider, Content } = Layout
 

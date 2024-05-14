@@ -48,7 +48,6 @@ export function createDiagramAction<T extends {}>(diagram: DiagramRef, action?: 
     if (action) {
         Object.assign(result, action);
     }
-    console.log(result, '<----resul')
 
     return result;
 }

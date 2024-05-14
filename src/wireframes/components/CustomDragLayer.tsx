@@ -1,53 +1,68 @@
- 
-
-import { useDragLayer, XYCoord } from 'react-dnd';
-import { ShapePlugin } from '../interface';
-import { getViewBox, ShapeRenderer } from '../shapes/ShapeRenderer';
-import './CustomDragLayer.scss';
+import { useDragLayer, XYCoord } from 'react-dnd'
+import { ShapePlugin } from '../interface'
+import { getViewBox, ShapeRenderer } from '../shapes/ShapeRenderer'
+import './CustomDragLayer.scss'
 
 export const CustomDragLayer = () => {
-    const { itemType, isDragging, item, initialOffset, currentOffset } = useDragLayer((monitor) => ({
-        currentOffset: monitor.getSourceClientOffset(),
-        isDragging: monitor.isDragging(),
-        item: monitor.getItem(),
-        itemType: monitor.getItemType(),
-        initialOffset: monitor.getInitialSourceClientOffset(),
-    }));
+  const { itemType, isDragging, item, initialOffset, currentOffset } =
+    useDragLayer((monitor) => ({
+      currentOffset: monitor.getSourceClientOffset(),
+      isDragging: monitor.isDragging(),
+      item: monitor.getItem(),
+      itemType: monitor.getItemType(),
+      initialOffset: monitor.getInitialSourceClientOffset()
+    }))
 
-    function renderItem() {
-        switch (itemType) {
-            case 'DND_ASSET':
-                const plugin = item['plugin'] as ShapePlugin;
+  function renderItem() {
+    switch (itemType) {
+      case 'DND_ASSET':
+        const plugin = item['plugin'] as ShapePlugin
 
-                return (
-                    <div style={getItemStyles(initialOffset, currentOffset, plugin)}>
-                        <ShapeRenderer plugin={plugin} />
-                    </div>
-                );
-            default:
-                return null;
-        }
+        return (
+          <>
+            <div style={getItemStyles(initialOffset, currentOffset, plugin)}>
+              <ShapeRenderer plugin={plugin} />
+            </div>
+          </>
+        )
+      default:
+        return null
     }
-    
-    if (!isDragging) {
-        return null;
-    }
+  }
 
-    return (
-        <div className='drag-layer'>
-            {renderItem()}
-        </div>
-    );
-};
+  if (!isDragging) {
+    return null
+  }
 
-function getItemStyles(initialOffset: XYCoord | null, currentOffset: XYCoord | null, plugin: ShapePlugin) {
-    if (!initialOffset || !currentOffset) {
-        return { display: 'none' };
-    }
-  
-    const transform = `translate(${currentOffset.x}px, ${currentOffset.y}px)`;
+  return <div className="drag-layer">{renderItem()}</div>
+}
 
-    const { size } = getViewBox(plugin);
+function getItemStyles(
+  initialOffset: XYCoord | null,
+  currentOffset: XYCoord | null,
+  plugin: ShapePlugin
+) {
+  if (!initialOffset || !currentOffset) {
+    return { display: 'none' }
+  }
 
-    return { transform, WebkitTransform: transform, width: size.x, height: size.y };
+  const transform = `translate(${currentOffset.x}px, ${currentOffset.y}px)`
+
+  const { size } = getViewBox(plugin)
+
+  //   console.log(
+  //     transform,
+  //     '<--transform',
+  //     size.x,
+  //     '<-- width- height',
+  //     size.y,
+  //     '<--- get item style'
+  //   )
+
+  return {
+    transform,
+    WebkitTransform: transform,
+    width: size.x,
+    height: size.y
+  }
 }

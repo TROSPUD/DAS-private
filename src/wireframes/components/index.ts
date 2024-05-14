@@ -1,4 +1,3 @@
-export * from './assets/Shapes';
 export * from './EditorView';
 export * from './PrintView';
 export * from './menu/ClipboardMenu';

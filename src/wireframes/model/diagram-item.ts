@@ -1,5 +1,3 @@
-
-
 import { ImmutableList, ImmutableMap, MathHelper, Record, Rotation } from '@app/core/utils';
 import { DefaultAppearance, Shape } from '@app/wireframes/interface';
 import { Configurable } from './configurables';

@@ -1,5 +1,3 @@
- 
-
 import * as svg from '@svgdotjs/svg.js';
 import { Color } from './color';
 import { sizeInPx } from './react';
@@ -20,7 +18,7 @@ export interface MatrixTransform {
     h?: number;
 }
 
-export module SVGHelper {    
+export module SVGHelper {
     export function roundedRectangleRight(rectangle: Rect2, radius = 10) {
         const rad = Math.min(radius, rectangle.width * 0.5, rectangle.height * 0.5);
 

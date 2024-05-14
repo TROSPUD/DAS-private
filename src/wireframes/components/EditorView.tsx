@@ -93,11 +93,7 @@ export const EditorViewInner = ({
       x: event.nativeEvent.offsetX,
       y: event.nativeEvent.offsetY
     }
-    console.log(
-      selectedPoint.current.x,
-      selectedPoint.current.y,
-      '<---select point'
-    )
+    console.log(selectedPoint.current, '<-----select point')
   })
 
   const [, drop] = useDrop({
@@ -122,15 +118,12 @@ export const EditorViewInner = ({
       if (!offset) {
         return
       }
-
       const componentRect = (findDOMNode(
         renderRef.current
       ) as HTMLElement)!.getBoundingClientRect()
 
       let x = ((offset?.x || 0) - spacing - componentRect.left) / zoom
       let y = ((offset?.y || 0) - spacing - componentRect.top) / zoom
-
-      console.log(x, y, '<-----drop position')
 
       dispatch(
         addShape(selectedDiagramId, item['name'], { position: { x, y } })
@@ -163,13 +156,26 @@ export const EditorViewInner = ({
     img.src = editor.backgroundImg || '' // 你的图片url
   }, [editor.backgroundImg]) // 当图片url发生变化时重新运行useEffect
 
+  // 计算新的editorSize
+
+  const newEditorHeight = editorSize.x * (imageSize.height / imageSize.width)
+  editorSize.y = newEditorHeight
+
   // 计算新的宽高
-  const newHeight = zoomedOuterWidth * (imageSize.height / imageSize.width)
-  const newEditorHeight = zoomedSize.y * (imageSize.height / imageSize.width)
-  zoomedSize.y = newEditorHeight
+  const newZommedHeight = zoomedSize.x * (imageSize.height / imageSize.width)
+  zoomedSize.y = newZommedHeight
+  const newOuterZoomHeight = zoomedSize.y + 2 * spacing
 
   const w = sizeInPx(zoomedOuterWidth)
-  const h = sizeInPx(newHeight)
+  const h = sizeInPx(newOuterZoomHeight)
+
+  console.log(
+    editorSize,
+    zoomedSize,
+    newOuterZoomHeight,
+    newEditorHeight,
+    '<---editor size'
+  )
 
   const padding = sizeInPx(spacing)
 
@@ -180,7 +186,7 @@ export const EditorViewInner = ({
       trigger={['contextMenu']}
       onOpenChange={setMenuVisible}
     >
-      <div className="editor-view" onClick={doSetPosition}>
+      <div className="editor-view">
         <div
           className="editor-diagram"
           style={{ width: w, height: h, padding }}
@@ -199,6 +205,7 @@ export const EditorViewInner = ({
             zoom={zoom}
             zoomedSize={zoomedSize}
             isDefaultView={true}
+            doSetPosition={doSetPosition}
           />
         </div>
       </div>

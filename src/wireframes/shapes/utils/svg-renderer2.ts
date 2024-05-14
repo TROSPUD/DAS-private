@@ -1,4 +1,4 @@
- 
+
 
 /* eslint-disable quote-props */
 
@@ -38,7 +38,6 @@ class Factory implements ShapeFactory {
     public rectangle(strokeWidth: RendererWidth, radius: number, bounds: Rect2, properties?: ShapePropertiesFunc) {
         const actualStroke = getStrokeWidth(strokeWidth);
         const actualBounds = getBounds(bounds, actualStroke);
-    
         return this.new('rect', () => new svg.Rect(), p => {
             p.setBackgroundColor('transparent');
             p.setStrokeWidth(actualStroke);
@@ -72,7 +71,6 @@ class Factory implements ShapeFactory {
     public roundedRectangleRight(strokeWidth: RendererWidth, radius: number, bounds: Rect2, properties?: ShapePropertiesFunc) {
         const actualStroke = getStrokeWidth(strokeWidth);
         const actualBounds = getBounds(bounds, actualStroke);
-    
         return this.new('path', () => new svg.Path(), p => {
             p.setBackgroundColor('transparent');
             p.setStrokeWidth(actualStroke);
@@ -83,7 +81,6 @@ class Factory implements ShapeFactory {
     public roundedRectangleTop(strokeWidth: RendererWidth, radius: number, bounds: Rect2, properties?: ShapePropertiesFunc) {
         const actualStroke = getStrokeWidth(strokeWidth);
         const actualBounds = getBounds(bounds, actualStroke);
-    
         return this.new('path', () => new svg.Path(), p => {
             p.setBackgroundColor('transparent');
             p.setStrokeWidth(actualStroke);
@@ -94,7 +91,7 @@ class Factory implements ShapeFactory {
     public roundedRectangleBottom(strokeWidth: RendererWidth, radius: number, bounds: Rect2, properties?: ShapePropertiesFunc) {
         const actualStroke = getStrokeWidth(strokeWidth);
         const actualBounds = getBounds(bounds, actualStroke);
-    
+
         return this.new('path', () => new svg.Path(), p => {
             p.setBackgroundColor('transparent');
             p.setStrokeWidth(actualStroke);
@@ -266,6 +263,7 @@ export class SVGRenderer2 extends Factory implements AbstractRenderer2 {
         this.measureDiv.style.whiteSpace = 'nowrap';
 
         document.body.appendChild(this.measureDiv);
+        console.log(this.measureDiv, 'svg render called')
     }
 
     public getLocalBounds(element: RendererElement): Rect2 {

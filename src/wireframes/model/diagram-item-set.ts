@@ -1,5 +1,3 @@
- 
-
 import { Types } from '@app/core/utils';
 import { Diagram } from './diagram';
 import { DiagramItem } from './diagram-item';
@@ -117,11 +115,11 @@ function flattenRootItems(items: ReadonlyArray<string | DiagramItem>, diagram: D
 
             const orderIndex = parent.childIds.indexOf(item.id);
 
-            byParent.push({ orderIndex, item });                
+            byParent.push({ orderIndex, item });
         } else {
             const orderIndex = diagram.rootIds.indexOf(item.id);
 
-            byRoot.push({ orderIndex, item });   
+            byRoot.push({ orderIndex, item });
         }
 
         source.set(item.id, item);
@@ -129,7 +127,7 @@ function flattenRootItems(items: ReadonlyArray<string | DiagramItem>, diagram: D
 
     unrollParent(byRoot, diagram, allItems);
 
-    for (const byParent of byParents.values()) {        
+    for (const byParent of byParents.values()) {
         unrollParent(byParent, diagram, allItems);
     }
 }
