@@ -24,8 +24,11 @@ type Props = {
     // The color for all diagrams.
     color: Color;
 
-    // The background image of editor
+    // The background image of diagram.
     backgroundImg?: string;
+
+    // The Scale of diagram.
+    scale?: number;
 
 };
 
@@ -42,8 +45,11 @@ export type InitialEditorProps = {
     // The color for all diagrams.
     color?: Color;
 
-    // The background image of editor
+    // The background image of diagram.
     backgroundImg?: string;
+
+    // The Scale of diagram.
+    scale?: number;
 
 };
 
@@ -76,12 +82,16 @@ export class EditorState extends Record<Props> {
         return this.get('backgroundImg')
     }
 
+    public get scale() {
+        return this.get('scale')
+    }
+
     public get orderedDiagrams(): ReadonlyArray<Diagram> {
         return this.findDiagrams(this.diagramIds.values);
     }
 
     public static create(setup: InitialEditorProps = {}): EditorState {
-        const { color, diagrams, diagramIds, size, backgroundImg } = setup;
+        const { color, diagrams, diagramIds, size, backgroundImg, scale } = setup;
 
         const props: Props = {
             color: color || Color.BLUE,
@@ -90,6 +100,7 @@ export class EditorState extends Record<Props> {
             id: MathHelper.guid(),
             size: size || new Vec2(800, 800),
             backgroundImg: backgroundImg || '',
+            scale: scale
         };
 
         return new EditorState(props);
@@ -119,6 +130,10 @@ export class EditorState extends Record<Props> {
 
     public changeBackgroundImg(backgroundImg: string) {
         return this.set('backgroundImg', backgroundImg);
+    }
+
+    public changeScale(scale: number) {
+        return this.set('scale', scale);
     }
 
     public moveDiagram(diagramId: string, index: number) {

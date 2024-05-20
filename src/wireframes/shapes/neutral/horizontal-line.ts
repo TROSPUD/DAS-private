@@ -1,4 +1,4 @@
-import { Constraint, DefaultAppearance, RenderContext, Shape, ShapePlugin, Vec2 } from '@app/wireframes/interface';
+import { ConfigurableFactory, Constraint, DefaultAppearance, RenderContext, Shape, ShapePlugin, Vec2 } from '@app/wireframes/interface';
 import { CommonTheme } from './_theme';
 
 const DEFAULT_APPEARANCE = {
@@ -36,6 +36,12 @@ export class HorizontalLine implements ShapePlugin {
 
     public defaultSize() {
         return { x: 300, y: 2 };
+    }
+
+    public configurables(factory: ConfigurableFactory) {
+        return [
+            factory.number('Length', 'Length', 0, 100000000),
+        ];
     }
 
     public previewSize(desiredWidth: number) {

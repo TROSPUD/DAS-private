@@ -1,4 +1,4 @@
- 
+
 
 export abstract class Configurable {
     constructor(
@@ -50,7 +50,7 @@ export class SliderConfigurable extends Configurable {
 export class NumberConfigurable extends Configurable {
     constructor(name: string, label: string,
         public readonly min = 0,
-        public readonly max = 100,
+        public readonly max = 1000000,
     ) {
         super(name, label);
 

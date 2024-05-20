@@ -43,7 +43,6 @@ export const TransformProperties = () => {
 
   const [x, setX] = useDebounceCallback((value) => {
     doTransform((oldBounds) => {
-      console.log(value, oldBounds, '<---old')
       const dx = value - (oldBounds.position.x - 0.5 * oldBounds.size.x)
       // Move by the delta between new and old position, because we move relative to the bounding box.
       return oldBounds.moveBy(new Vec2(dx, 0))

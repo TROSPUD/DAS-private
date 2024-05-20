@@ -72,7 +72,7 @@ export const DiagramProperties = React.memo(() => {
         </Col>
       </Row>
 
-      <Row className="property">
+      {/* <Row className="property">
         <Col span={12} className="property-label">
           {texts.common.backgroundColor}
         </Col>
@@ -83,7 +83,7 @@ export const DiagramProperties = React.memo(() => {
             recentColors={recentColors}
           />
         </Col>
-      </Row>
+      </Row> */}
 
       <Row className="property">
         <Col span={12} className="property-label">

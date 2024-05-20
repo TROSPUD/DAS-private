@@ -19,7 +19,7 @@ import {
 } from '@app/wireframes/model'
 import { CustomSlider } from './CustomSlider'
 import { Text } from './Text'
-
+import './Custom.scss'
 interface CustomPropertyProps {
   // The configurable.
   configurable: Configurable
@@ -50,6 +50,15 @@ export const CustomProperty = (props: CustomPropertyProps) => {
     value
   } = props
 
+  const selectUnits = (
+    <Select defaultValue="meter" style={{ width: 80 }}>
+      <option value="meter">m</option>
+      <option value="kilometer">km</option>
+      <option value="inch">in</option>
+      <option value="foot">ft</option>
+    </Select>
+  )
+
   const doChangeValue = useEventCallback((newValue: any) => {
     onChange(configurable.name, newValue)
   })
@@ -64,10 +73,10 @@ export const CustomProperty = (props: CustomPropertyProps) => {
 
   return (
     <Row className="property">
-      <Col span={12} className="property-label">
+      <Col span={8} className="property-label">
         {configurable.label}
       </Col>
-      <Col span={12} className="property-value">
+      <Col span={16} className="property-value">
         {configurable instanceof SliderConfigurable && (
           <CustomSlider
             value={value}
@@ -79,6 +88,7 @@ export const CustomProperty = (props: CustomPropertyProps) => {
 
         {configurable instanceof NumberConfigurable && (
           <InputNumber
+            addonBefore={selectUnits}
             value={value}
             min={configurable.min}
             max={configurable.max}

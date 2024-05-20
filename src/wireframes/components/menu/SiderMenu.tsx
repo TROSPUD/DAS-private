@@ -65,7 +65,7 @@ export const SiderMenu = () => {
       style={{ border: 0 }}
       defaultOpenKeys={['shape', 'recent']}
     >
-      <Menu.SubMenu key="shape" title="Shapes">
+      <Menu.SubMenu key="shape" title="Components">
         {shapesFiltered.map((item) => (
           <Menu.Item key={item.name} style={{ height: '80px', paddingLeft: 0 }}>
             <div
@@ -78,7 +78,6 @@ export const SiderMenu = () => {
               <div style={{ flex: 6 }}>
                 <ShapeImage shape={item} />
               </div>
-
               <div style={{ marginLeft: '10px', flex: 4 }}>
                 {item.displayName}
               </div>
