@@ -1,7 +1,6 @@
 import { ImmutableList, ImmutableMap, ImmutableSet, MathHelper, Record, Types } from '@app/core/utils';
 import { DiagramItem } from './diagram-item';
 import { DiagramItemSet } from './diagram-item-set';
-import { Empty } from 'antd';
 
 type Items = ImmutableMap<DiagramItem>;
 type ItemIds = ImmutableList<string>;

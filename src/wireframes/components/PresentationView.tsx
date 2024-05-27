@@ -8,7 +8,6 @@ import {
 import { Button } from 'antd'
 import * as React from 'react'
 import { sizeInPx, useEventCallback, useFullscreen } from '@app/core'
-import { getPageLinkId } from '@app/wireframes/interface'
 import { useStore } from '@app/wireframes/model'
 import { PrintDiagram } from './PrintDiagram'
 import './PresentationView.scss'

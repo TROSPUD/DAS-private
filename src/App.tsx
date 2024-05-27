@@ -9,7 +9,6 @@ import {
   HistoryMenu,
   LoadingMenu,
   Properties,
-  Recent,
   UIMenu
 } from '@app/wireframes/components'
 import {
@@ -20,10 +19,8 @@ import {
   useStore
 } from '@app/wireframes/model'
 import { useAppDispatch } from './store'
-import { texts } from './texts'
 import { CustomDragLayer } from './wireframes/components/CustomDragLayer'
 import { PresentationView } from './wireframes/components/PresentationView'
-import { OverlayContainer } from './wireframes/contexts/OverlayContext'
 import { useEffect, useRef, useState } from 'react'
 import { SiderMenu } from './wireframes/components/menu/SiderMenu'
 import '../src/wireframes/components/assets/Shapes.scss'

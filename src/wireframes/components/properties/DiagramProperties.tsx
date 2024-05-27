@@ -1,33 +1,27 @@
-import { Button, Col, InputNumber, Row } from 'antd'
+import { Col, Row } from 'antd'
 import * as React from 'react'
-import { Color, ColorPicker, useEventCallback } from '@app/core'
-import { useAppDispatch } from '@app/store'
+// import { useEventCallback } from '@app/core'
+// import { useAppDispatch } from '@app/store'
 import { texts } from '@app/texts'
-import {
-  changeColor,
-  changeSize,
-  getColors,
-  getEditor,
-  useStore
-} from '@app/wireframes/model'
-import { useEffect } from 'react'
+// import { changeSize, getEditor, useStore } from '@app/wireframes/model'
+// import { useEffect } from 'react'
 import { UploadImage } from './Upload'
 
 export const DiagramProperties = React.memo(() => {
-  const dispatch = useAppDispatch()
-  const editor = useStore(getEditor)
-  const editorSize = editor.size
-  const [sizeWidth, setWidth] = React.useState(0)
-  const [sizeHeight, setHeight] = React.useState(0)
+  // const dispatch = useAppDispatch()
+  // const editor = useStore(getEditor)
+  // const editorSize = editor.size
+  // const [sizeWidth, setWidth] = React.useState(0)
+  // const [sizeHeight, setHeight] = React.useState(0)
 
-  useEffect(() => {
-    setWidth(editorSize.x)
-    setHeight(editorSize.y)
-  }, [editorSize])
+  // useEffect(() => {
+  //   setWidth(editorSize.x)
+  //   setHeight(editorSize.y)
+  // }, [editorSize])
 
-  const doChangeSize = useEventCallback(() => {
-    dispatch(changeSize(sizeWidth, sizeHeight))
-  })
+  // const doChangeSize = useEventCallback(() => {
+  //   dispatch(changeSize(sizeWidth, sizeHeight))
+  // })
 
   return (
     <>

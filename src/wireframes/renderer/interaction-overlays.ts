@@ -124,8 +124,8 @@ export class InteractionOverlays {
         } else {
             labelGroup.show();
 
-            labelRect = labelGroup.children().at(0) as svg.Rect;
-            labelText = labelGroup.children().at(1) as svg.ForeignObject;
+            labelRect = labelGroup.children()[0] as svg.Rect;
+            labelText = labelGroup.children()[1] as svg.ForeignObject;
         }
 
         let characterWidthKey = fontSize.toString();

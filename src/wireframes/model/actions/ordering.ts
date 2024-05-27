@@ -1,5 +1,3 @@
- 
-
 import { ActionReducerMapBuilder, createAction } from '@reduxjs/toolkit';
 import { EditorState } from './../internal';
 import { createItemsAction, DiagramRef, ItemsRef } from './utils';
@@ -30,22 +28,4 @@ export function buildOrdering(builder: ActionReducerMapBuilder<EditorState>) {
                 return diagram.moveItems(itemIds, index);
             });
         })
-        .addCase(orderItems, (state, action) => {
-            const { diagramId, itemIds, mode } = action.payload;
-
-            return state.updateDiagram(diagramId, diagram => {
-                switch (mode) {
-                    case OrderMode.BringToFront:
-                        return diagram.bringToFront(itemIds);
-                    case OrderMode.BringForwards:
-                        return diagram.bringForwards(itemIds);
-                    case OrderMode.SendToBack:
-                        return diagram.sendToBack(itemIds);
-                    case OrderMode.SendBackwards:
-                        return diagram.sendBackwards(itemIds);
-                    default:
-                        return diagram;
-                }
-            });
-        });
 }

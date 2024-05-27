@@ -1,5 +1,5 @@
 import { RendererService } from '@app/wireframes/model/renderer.service';
-import { HorizontalLine, Label, Raster, Antenna, Bbu, PowerDivider } from './dependencies';
+import { HorizontalLine, Raster, Antenna, Bbu, PowerDivider } from './dependencies';
 import { AbstractControl } from './utils/abstract-control';
 
 export function registerRenderers() {

@@ -18,7 +18,6 @@ import { RootState, useAppDispatch } from '@app/store'
 import { useMemo } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 
-import { RecentItem } from '../recent/RecentItem'
 import { DownloadOutlined } from '@ant-design/icons'
 
 export const SiderMenu = () => {

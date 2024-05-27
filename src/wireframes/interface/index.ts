@@ -140,7 +140,8 @@ export const DefaultAppearance = {
     TEXT_ALIGNMENT: 'TEXT_ALIGNMENT',
     TEXT_DISABLED: 'TEXT_DISABLED',
     TEXT: 'TEXT',
-    Length: 'Length'
+    Length: 'Length',
+    BACKGROUND_COLOR: 'BACKGROUND_COLOR'
 };
 
 export function getPageLink(id: string) {

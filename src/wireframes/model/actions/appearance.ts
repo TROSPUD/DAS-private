@@ -2,7 +2,6 @@ import { ActionReducerMapBuilder, createAction } from '@reduxjs/toolkit';
 import { Color, Types } from '@app/core/utils';
 import { EditorState, RendererService, Transform } from './../internal';
 import { createItemsAction, DiagramRef, ItemsRef } from './utils';
-import { it } from 'date-fns/locale';
 
 export const changeColors =
     createAction('items/color', (oldColor: Color, newColor: Color) => {

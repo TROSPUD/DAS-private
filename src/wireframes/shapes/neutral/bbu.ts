@@ -39,7 +39,7 @@ export class Bbu implements ShapePlugin {
 
     const radius = Math.min(ctx.rect.width, ctx.rect.height) * 0.5;
 
-    const state = ctx.shape.getAppearance(STATE);
+    // const state = ctx.shape.getAppearance(STATE);
 
     const circleY = ctx.rect.height * 0.5;
     const circleX = ctx.rect.width - radius;

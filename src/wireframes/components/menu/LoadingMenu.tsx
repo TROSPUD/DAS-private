@@ -1,13 +1,10 @@
-import { Title } from '@app/core'
-import { texts } from '@app/texts'
 import { useStore } from '@app/wireframes/model'
-import { ActionMenuButton, buildMenuItem, useLoading } from './../actions'
+import { ActionMenuButton, useLoading } from './../actions'
 import { memo, useEffect, useRef } from 'react'
 
 export const LoadingMenu = memo(() => {
   const forLoading = useLoading()
   const editor = useStore((s) => s.editor)
-  const tokenToRead = useStore((s) => s.loading.tokenToRead)
   const tokenToWrite = useStore((s) => s.loading.tokenToWrite)
   const saveTimer = useRef<any>()
   const saveAction = useRef(forLoading.saveDiagram)

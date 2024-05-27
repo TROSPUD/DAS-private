@@ -3,24 +3,17 @@ import * as React from 'react'
 import { DropTargetMonitor, useDrop } from 'react-dnd'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import { findDOMNode } from 'react-dom'
-import {
-  loadImagesToClipboardItems,
-  sizeInPx,
-  useClipboard,
-  useEventCallback
-} from '@app/core'
+import { sizeInPx, useEventCallback } from '@app/core'
 import { useAppDispatch } from '@app/store'
 import {
   addShape,
   changeItemsAppearance,
-  changeSize,
   Diagram,
   getDiagram,
   getDiagramId,
   getEditor,
   getMasterDiagram,
   getSelection,
-  RendererService,
   selectItems,
   Transform,
   transformItems,
@@ -28,7 +21,6 @@ import {
 } from '@app/wireframes/model'
 import { Editor } from '@app/wireframes/renderer/Editor'
 import { DiagramRef, ItemsRef } from '../model/actions/utils'
-import { ShapeSource } from './../interface'
 import { useContextMenu } from './context-menu'
 import './EditorView.scss'
 import { useEffect, useRef, useState } from 'react'

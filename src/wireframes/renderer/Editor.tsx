@@ -40,7 +40,7 @@ export interface EditorProps {
   color: Color
 
   // The backgroung Image
-  backgroundImg: string
+  backgroundImg?: string
 
   // The optional viewbox.
   viewBox?: Rect2
@@ -78,13 +78,11 @@ export interface EditorProps {
     oldBounds: Transform,
     newBounds: Transform
   ) => any
-  doSetPosition: (event: React.MouseEvent) => void
+  doSetPosition?: (event: React.MouseEvent) => void
 }
 
 export const Editor = memo((props: EditorProps) => {
   const {
-    backgroundImg,
-    color,
     diagram,
     isDefaultView,
     masterDiagram,

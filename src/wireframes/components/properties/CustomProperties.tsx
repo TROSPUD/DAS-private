@@ -11,7 +11,6 @@ import {
   getSelection,
   NumberConfigurable,
   selectColorTab,
-  selectDiagram,
   SelectionConfigurable,
   SliderConfigurable,
   TextConfigurable,

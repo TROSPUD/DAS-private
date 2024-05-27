@@ -15,15 +15,15 @@ export default defineConfig({
     build: {
         chunkSizeWarningLimit: 2000,
     },
-    
+
     plugins: [
         ...
         (process.env.NODE_ENV === 'production' ?
             [
                 ViteFaviconsPlugin({
-                    logo: './public/logo-square.svg',
+                    logo: './public/logo.svg',
                     favicons: {
-                        appName: 'mydraft',
+                        appName: 'das',
                         appDescription: 'Open Source Wireframing Tool',
                         developerName: 'Sebastian Stehle',
                         developerURL: 'https://suquidex.io',
