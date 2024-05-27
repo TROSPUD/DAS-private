@@ -176,7 +176,6 @@ export class Diagram extends Record<Props> {
             }
         }
 
-
         return this.arrange([], update => {
             update.items = update.items.set(shape.id, shape);
 
@@ -207,30 +206,6 @@ export class Diagram extends Record<Props> {
             update.itemIds = update.itemIds.moveTo(ids, index);
         }, 'SameParent');
     }
-
-    // public bringToFront(ids: ReadonlyArray<string>) {
-    //     return this.arrange(ids, update => {
-    //         update.itemIds = update.itemIds.bringToFront(ids);
-    //     }, 'SameParent');
-    // }
-
-    // public bringForwards(ids: ReadonlyArray<string>) {
-    //     return this.arrange(ids, update => {
-    //         update.itemIds = update.itemIds.bringForwards(ids);
-    //     }, 'SameParent');
-    // }
-
-    // public sendToBack(ids: ReadonlyArray<string>) {
-    //     return this.arrange(ids, update => {
-    //         update.itemIds = update.itemIds.sendToBack(ids);
-    //     }, 'SameParent');
-    // }
-
-    // public sendBackwards(ids: ReadonlyArray<string>) {
-    //     return this.arrange(ids, update => {
-    //         update.itemIds = update.itemIds.sendBackwards(ids);
-    //     }, 'SameParent');
-    // }
 
     public group(groupId: string, ids: ReadonlyArray<string>) {
         return this.arrange(ids, update => {

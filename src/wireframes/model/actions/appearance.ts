@@ -2,6 +2,7 @@ import { ActionReducerMapBuilder, createAction } from '@reduxjs/toolkit';
 import { Color, Types } from '@app/core/utils';
 import { EditorState, RendererService, Transform } from './../internal';
 import { createItemsAction, DiagramRef, ItemsRef } from './utils';
+import { it } from 'date-fns/locale';
 
 export const changeColors =
     createAction('items/color', (oldColor: Color, newColor: Color) => {
@@ -50,7 +51,6 @@ export function buildAppearance(builder: ActionReducerMapBuilder<EditorState>) {
         })
         .addCase(changeItemsAppearance, (state, action) => {
             const { diagramId, appearance, itemIds, force } = action.payload;
-
             return state.updateDiagram(diagramId, diagram => {
                 const { key, value } = appearance;
 
@@ -60,11 +60,10 @@ export function buildAppearance(builder: ActionReducerMapBuilder<EditorState>) {
                     if (!rendererInstance) {
                         throw new Error(`Cannot find renderer for ${item.renderer}.`);
                     }
-
                     if (force || !Types.isUndefined(rendererInstance.defaultAppearance()[key])) {
+                        console.log(key, rendererInstance, itemIds, item, '<---item appearence')
                         return item.setAppearance(key, value);
                     }
-
                     return item;
                 });
             });

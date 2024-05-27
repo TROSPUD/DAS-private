@@ -1,4 +1,4 @@
-import { Checkbox, Col, InputNumber, Row, Select } from 'antd'
+import { Button, Checkbox, Col, InputNumber, Row, Select } from 'antd'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { Color, ColorPalette, ColorPicker, useEventCallback } from '@app/core'
 import { useAppDispatch } from '@app/store'
@@ -11,6 +11,7 @@ import {
   getSelection,
   NumberConfigurable,
   selectColorTab,
+  selectDiagram,
   SelectionConfigurable,
   SliderConfigurable,
   TextConfigurable,
@@ -73,9 +74,11 @@ export const CustomProperty = (props: CustomPropertyProps) => {
 
   return (
     <Row className="property">
-      <Col span={8} className="property-label">
-        {configurable.label}
-      </Col>
+      {configurable.label !== 'Length' && (
+        <Col span={8} className="property-label">
+          {configurable.label}
+        </Col>
+      )}
       <Col span={16} className="property-value">
         {configurable instanceof SliderConfigurable && (
           <CustomSlider
@@ -124,6 +127,11 @@ export const CustomProperty = (props: CustomPropertyProps) => {
           />
         )}
       </Col>
+      {configurable.label == 'Length' && (
+        <Col span={8} className="property-label">
+          <Button type="primary">confirm</Button>
+        </Col>
+      )}
     </Row>
   )
 }
@@ -141,6 +149,14 @@ export const CustomProperties = () => {
 
   const doChange = useEventCallback((key: string, value: any) => {
     if (selectedDiagramId) {
+      console.log(
+        selectedDiagramId,
+        '<---select diagram id',
+        key,
+        '<---key',
+        value,
+        '<---value'
+      )
       dispatch(
         changeItemsAppearance(
           selectedDiagramId,

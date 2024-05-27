@@ -39,6 +39,7 @@ export const texts = {
         icons: 'Icons',
         layout: 'Layout',
         link: 'Link',
+        length: 'Length',
         load: 'Load',
         loadingDiagram: 'Loading diagram...',
         loadingDiagramDone: 'Loading diagram completed successfully.',

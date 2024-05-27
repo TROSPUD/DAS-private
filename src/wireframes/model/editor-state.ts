@@ -28,6 +28,7 @@ type Props = {
     backgroundImg?: string;
 
     // The Scale of diagram.
+    // 以米/1坐标为全局单位
     scale?: number;
 
 };

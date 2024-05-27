@@ -1,5 +1,3 @@
-
-
 export abstract class Configurable {
     constructor(
         public readonly name: string,

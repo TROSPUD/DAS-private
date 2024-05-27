@@ -5,6 +5,7 @@ const DEFAULT_APPEARANCE = {
     [DefaultAppearance.STROKE_COLOR]: CommonTheme.CONTROL_BORDER_COLOR,
     [DefaultAppearance.STROKE_THICKNESS]: 2,
     [DefaultAppearance.TEXT_DISABLED]: true,
+    [DefaultAppearance.Length]: 0
 };
 
 class BorderHeightConstraint implements Constraint {
@@ -50,6 +51,10 @@ export class HorizontalLine implements ShapePlugin {
 
     public constraint() {
         return BorderHeightConstraint.INSTANCE;
+    }
+
+    public showInGallery() {
+        return false;
     }
 
     public render(ctx: RenderContext) {
