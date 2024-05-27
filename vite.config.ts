@@ -25,7 +25,6 @@ export default defineConfig({
                     favicons: {
                         appName: 'das',
                         appDescription: 'Open Source Wireframing Tool',
-                        developerName: 'Sebastian Stehle',
                         developerURL: 'https://suquidex.io',
                         start_url: '/',
                         theme_color: '#fda100',
