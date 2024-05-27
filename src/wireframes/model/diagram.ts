@@ -166,6 +166,16 @@ export class Diagram extends Record<Props> {
         if (!shape || this.items.get(shape.id)) {
             return this;
         }
+        // 避免重复设置比例尺
+        if (shape && shape.values.renderer === 'HorizontalLine') {
+            const itemsValue = this.items.values;
+            const doExit = itemsValue.some(value => value.values.renderer === 'HorizontalLine')
+            // 检查是否存在HorizontalLine
+            if (doExit) {
+                return this;
+            }
+        }
+
 
         return this.arrange([], update => {
             update.items = update.items.set(shape.id, shape);

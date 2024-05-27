@@ -1,12 +1,12 @@
- 
+
 
 import { MathHelper } from './math-helper';
 import { Types } from './types';
 
 export abstract class Record<T extends object> {
-    private readonly values: T;
+    public values: T;
 
-    public readonly instanceId: string;
+    public instanceId: string;
 
     public get<K extends keyof T>(key: K): T[K] {
         return this.values[key];
@@ -22,7 +22,7 @@ export abstract class Record<T extends object> {
 
     public set<K extends keyof T>(key: K, value: T[K]): this {
         const current = this.values[key];
-    
+
         if (Types.equals(current, value)) {
             return this;
         }
@@ -45,7 +45,7 @@ export abstract class Record<T extends object> {
 
         for (const [key, value] of Object.entries(props)) {
             const current = (this.values as any)[key];
-    
+
             if (Types.equals(current, value)) {
                 continue;
             }

@@ -100,7 +100,6 @@ export const Editor = memo((props: EditorProps) => {
     zoom,
     zoomedSize
   } = props
-  console.log(viewBox, '<--viewbox', viewSize, '<---viewsize')
   const editor = useStore(getEditor)
   const adornerSelectLayer = useRef<svg.Container>()
   const adornerTransformLayer = useRef<svg.Container>()
