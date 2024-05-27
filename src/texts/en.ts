@@ -79,6 +79,7 @@ export const texts = {
         savingDiagramDoneUrl: (fullUrl: string) => `Saving diagram completed under ${fullUrl}.`,
         sendBackwards: 'Send Backwards',
         sendToBack: 'Send to Back',
+        setScale: 'Set scale',
         shapes: 'Components',
         strokeColor: 'Stroke Color',
         strokeThickness: 'Stroke Thickness',

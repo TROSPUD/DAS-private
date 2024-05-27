@@ -216,7 +216,7 @@ $sidebar-size: 320px;
     color: $color-text;
     font-family: monospace;
     font-weight: bolder;
-    margin-right: .5rem;
+    margin-right: 1rem;
 }
 
 //
@@ -224,7 +224,7 @@ $sidebar-size: 320px;
 //
 .property {
     & {
-        margin-bottom: .5rem;
+        margin-bottom: 1rem;
     }
 
     &:last-child {

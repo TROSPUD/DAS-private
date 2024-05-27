@@ -1,5 +1,3 @@
- 
-
 import { Rotation } from './rotation';
 import { Types } from './types';
 import { Vec2 } from './vec2';

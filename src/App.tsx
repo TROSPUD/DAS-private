@@ -27,6 +27,7 @@ import { OverlayContainer } from './wireframes/contexts/OverlayContext'
 import { useEffect, useRef, useState } from 'react'
 import { SiderMenu } from './wireframes/components/menu/SiderMenu'
 import '../src/wireframes/components/assets/Shapes.scss'
+import { ScaleMenu } from './wireframes/components/menu/ScaleMenu'
 
 const { Header, Sider, Content } = Layout
 
@@ -83,8 +84,9 @@ export const App = () => {
                 <span className="menu-separator" />
 
                 <UIMenu onPlay={doPresent} />
+                <span className="menu-separator" />
+                <ScaleMenu />
               </div>
-
               <div>
                 <LoadingMenu />
               </div>

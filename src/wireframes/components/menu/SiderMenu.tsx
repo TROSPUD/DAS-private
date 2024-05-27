@@ -15,7 +15,7 @@ import { Menu, Empty, Typography, Button } from 'antd'
 
 import { ShapeImage } from '../assets/ShapeImage'
 import { RootState, useAppDispatch } from '@app/store'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 
 import { RecentItem } from '../recent/RecentItem'

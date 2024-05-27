@@ -115,7 +115,6 @@ class Factory implements ShapeFactory {
             p.setText(config?.text, allowMarkdown);
             p.setFontSize(config);
             p.setFontFamily(config);
-            p.setAlignment(config);
             p.setVerticalAlignment('middle');
             p.setTransform(bounds);
         }, properties);
@@ -127,7 +126,6 @@ class Factory implements ShapeFactory {
             p.setText(config?.text?.replace(/\n/g, '<br />'), allowMarkdown);
             p.setFontSize(config);
             p.setFontFamily(config);
-            p.setAlignment(config);
             p.setVerticalAlignment('top');
             p.setTransform(bounds);
         }, properties);
@@ -540,12 +538,6 @@ class Properties implements ShapeProperties {
         return this;
     }
 
-    public setAlignment(alignment: TextConfig | null | undefined): ShapeProperties {
-        this.propertiesNew['text-alignment'] = getTextAlignment(alignment);
-
-        return this;
-    }
-
     public setTextDecoration(decoration: TextDecoration): ShapeProperties {
         this.propertiesNew['text-decoration'] = decoration;
 
@@ -641,14 +633,6 @@ function getText(value: TextConfig | Shape | string | null | undefined) {
         return value.text || '';
     } else {
         return (value as any)?.['text'] || value || '';
-    }
-}
-
-function getTextAlignment(value: TextConfig | Shape | string | null | undefined) {
-    if (isShape(value)) {
-        return value.textAlignment || 'center';
-    } else {
-        return (value as any)?.['alignment'] || value || 'center';
     }
 }
 

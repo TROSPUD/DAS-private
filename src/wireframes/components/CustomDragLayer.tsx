@@ -50,15 +50,6 @@ function getItemStyles(
 
   const { size } = getViewBox(plugin)
 
-  //   console.log(
-  //     transform,
-  //     '<--transform',
-  //     size.x,
-  //     '<-- width- height',
-  //     size.y,
-  //     '<--- get item style'
-  //   )
-
   return {
     transform,
     WebkitTransform: transform,

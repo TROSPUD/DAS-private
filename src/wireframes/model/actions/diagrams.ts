@@ -82,7 +82,6 @@ export function buildDiagrams(builder: ActionReducerMapBuilder<EditorState>) {
         })
         .addCase(changeSize, (state, action) => {
             const { width, height } = action.payload;
-
             return state.changeSize(new Vec2(width, height));
         })
         .addCase(changeColor, (state, action) => {
