@@ -29,8 +29,6 @@ export function createItemsAction<T extends {}>(diagram: DiagramRef, items: Item
         }
     }
 
-    console.log(result, '<----select result')
-
     return result;
 }
 

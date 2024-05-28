@@ -6,6 +6,8 @@ import { texts } from '@app/texts'
 // import { changeSize, getEditor, useStore } from '@app/wireframes/model'
 // import { useEffect } from 'react'
 import { UploadImage } from './Upload'
+import { getEditor, useStore } from '@app/wireframes/model'
+import './Diagram.scss'
 
 export const DiagramProperties = React.memo(() => {
   // const dispatch = useAppDispatch()
@@ -22,6 +24,8 @@ export const DiagramProperties = React.memo(() => {
   // const doChangeSize = useEventCallback(() => {
   //   dispatch(changeSize(sizeWidth, sizeHeight))
   // })
+  const editor = useStore(getEditor)
+  const editorScale = editor.scale
 
   return (
     <>
@@ -61,6 +65,16 @@ export const DiagramProperties = React.memo(() => {
         </Col>
         <Col span={12} className="property-value">
           <UploadImage />
+        </Col>
+      </Row>
+      <Row className="property">
+        <Col span={12} className="property-label">
+          Measuring Scale
+        </Col>
+        <Col span={12} className="property-value span-tag">
+          <span className="scale-tag">
+            {editorScale ? `${editorScale} m/unit` : 'not set'}
+          </span>
         </Col>
       </Row>
     </>

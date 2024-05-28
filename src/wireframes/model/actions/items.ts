@@ -104,8 +104,6 @@ export function buildItems(builder: ActionReducerMapBuilder<EditorState>) {
                 };
 
                 const shape = DiagramItem.createShape(initialProps);
-                console.log(shape, '<--- add horizonal line')
-
                 return diagram.addShape(shape).selectItems([id]);
             });
         });

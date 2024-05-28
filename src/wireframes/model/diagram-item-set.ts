@@ -3,7 +3,7 @@ import { Diagram } from './diagram';
 import { DiagramItem } from './diagram-item';
 
 export class DiagramItemSet {
-    private cachedSelectedItems?: ReadonlyArray<DiagramItem>;
+    public cachedSelectedItems?: ReadonlyArray<DiagramItem>;
     private cachedDeepEditableItems?: ReadonlyArray<DiagramItem>;
 
     public static EMPTY = new DiagramItemSet(new Map(), new Map());

@@ -1,15 +1,18 @@
-import { Button, Checkbox, Col, InputNumber, Row, Select } from 'antd'
+import { Button, Checkbox, Col, InputNumber, Row, Select, message } from 'antd'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { Color, ColorPalette, ColorPicker, useEventCallback } from '@app/core'
 import { useAppDispatch } from '@app/store'
 import {
   changeItemsAppearance,
+  changeScale,
   ColorConfigurable,
   Configurable,
   getColors,
   getDiagramId,
+  getEditor,
   getSelection,
   NumberConfigurable,
+  removeItems,
   selectColorTab,
   SelectionConfigurable,
   SliderConfigurable,
@@ -20,6 +23,7 @@ import {
 import { CustomSlider } from './CustomSlider'
 import { Text } from './Text'
 import './Custom.scss'
+
 interface CustomPropertyProps {
   // The configurable.
   configurable: Configurable
@@ -50,14 +54,30 @@ export const CustomProperty = (props: CustomPropertyProps) => {
     value
   } = props
 
+  const selectionSetId = useStore(getSelection).selectedItems
+  const selectedDiagramId = useStore(getDiagramId)
+  const dispatch = useAppDispatch()
+
+  const editor = useStore(getEditor)
+
   const selectUnits = (
     <Select defaultValue="meter" style={{ width: 80 }}>
-      <option value="meter">m</option>
-      <option value="kilometer">km</option>
-      <option value="inch">in</option>
-      <option value="foot">ft</option>
+      <Select.Option value="meter">m</Select.Option>
+      <Select.Option value="kilometer">km</Select.Option>
+      <Select.Option value="inch">in</Select.Option>
+      <Select.Option value="foot">ft</Select.Option>
     </Select>
   )
+
+  const doSetScale = useEventCallback(() => {
+    if (selectionSetId.length === 1 && selectedDiagramId) {
+      dispatch(removeItems(selectedDiagramId, selectionSetId))
+    }
+
+    const scale = editor.scale
+
+    message.success(`set scale of editor successfully${scale}`)
+  })
 
   const doChangeValue = useEventCallback((newValue: any) => {
     onChange(configurable.name, newValue)
@@ -128,7 +148,9 @@ export const CustomProperty = (props: CustomPropertyProps) => {
       </Col>
       {configurable.label == 'Length' && (
         <Col span={8} className="property-label">
-          <Button type="primary">confirm</Button>
+          <Button type="primary" onClick={() => doSetScale()}>
+            confirm
+          </Button>
         </Col>
       )}
     </Row>
@@ -148,14 +170,15 @@ export const CustomProperties = () => {
 
   const doChange = useEventCallback((key: string, value: any) => {
     if (selectedDiagramId) {
-      console.log(
-        selectedDiagramId,
-        '<---select diagram id',
-        key,
-        '<---key',
-        value,
-        '<---value'
+      const selectedLine = selectionSet.cachedSelectedItems?.find(
+        (item) => item.values.renderer === 'HorizontalLine'
       )
+      // 如果item为horizontal line，计算editor比例尺
+      if (selectedLine) {
+        const scale = value / selectedLine.values.transform.size.x
+        console.log(scale, '<---the scale of editor')
+        dispatch(changeScale(scale))
+      }
       dispatch(
         changeItemsAppearance(
           selectedDiagramId,

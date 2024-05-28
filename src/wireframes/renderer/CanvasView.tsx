@@ -65,16 +65,6 @@ export const CanvasView = (props: CanvasViewProps) => {
       const y = viewBox?.y || 0
       const w = viewBox ? viewBox.w : viewSize.x
       const h = viewBox ? viewBox.h : viewSize.y
-      console.log(
-        x,
-        y,
-        w,
-        h,
-        '<---- document size',
-        zoomedSize,
-        '<---zoom size'
-      )
-
       document.size(zoomedSize.x, zoomedSize.y).viewbox(x, y, w, h)
     }
   }, [viewSize, viewBox, zoom, zoomedSize, document])

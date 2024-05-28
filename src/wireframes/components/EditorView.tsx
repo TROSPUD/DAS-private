@@ -149,16 +149,6 @@ export const EditorViewInner = ({
     img.src = editor.backgroundImg || '' // 你的图片url
   }, [editor.backgroundImg]) // 当图片url发生变化时重新运行useEffect
 
-  // useEffect(() => {
-  //   // 计算新的editorSize
-  //   const newEditorHeight = editorSize.x * (imageSize.height / imageSize.width)
-  //   editorSize.y = newEditorHeight
-  // dispatch(changeSize(editorSize.x, editorSize.y))
-  //   console.log(editorSize, '<---test editor siezw')
-  // }, [imageSize])
-
-  // 计算新的editorSize
-
   const newEditorHeight = editorSize.x * (imageSize.height / imageSize.width)
   editorSize.y = newEditorHeight
 

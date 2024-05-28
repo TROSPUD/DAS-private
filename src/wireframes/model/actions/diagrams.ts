@@ -43,6 +43,11 @@ export const changeSize =
         return { payload: { width, height } };
     });
 
+export const changeScale =
+    createAction('editor/scale', (scale: number) => {
+        return { payload: { scale } };
+    });
+
 export const changeColor =
     createAction('editor/color', (color: Color) => {
         return { payload: { color: color.toString() } };
@@ -83,6 +88,10 @@ export function buildDiagrams(builder: ActionReducerMapBuilder<EditorState>) {
         .addCase(changeSize, (state, action) => {
             const { width, height } = action.payload;
             return state.changeSize(new Vec2(width, height));
+        })
+        .addCase(changeScale, (state, action) => {
+            const { scale } = action.payload;
+            return state.changeScale(scale);
         })
         .addCase(changeColor, (state, action) => {
             const { color } = action.payload;

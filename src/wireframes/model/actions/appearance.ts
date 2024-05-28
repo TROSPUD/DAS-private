@@ -60,7 +60,6 @@ export function buildAppearance(builder: ActionReducerMapBuilder<EditorState>) {
                         throw new Error(`Cannot find renderer for ${item.renderer}.`);
                     }
                     if (force || !Types.isUndefined(rendererInstance.defaultAppearance()[key])) {
-                        console.log(key, rendererInstance, itemIds, item, '<---item appearence')
                         return item.setAppearance(key, value);
                     }
                     return item;
