@@ -23,6 +23,7 @@ import {
 import { CustomSlider } from './CustomSlider'
 import { Text } from './Text'
 import './Custom.scss'
+import { useState } from 'react'
 
 interface CustomPropertyProps {
   // The configurable.
@@ -38,7 +39,7 @@ interface CustomPropertyProps {
   recentColors: ColorPalette
 
   // When the value has changed.
-  onChange: (name: string, value: any) => void
+  onChange: (name: string, value: any, unit?: string) => void
 
   // The color tab has changed.
   onColorTabChange: (key: string) => void
@@ -59,14 +60,25 @@ export const CustomProperty = (props: CustomPropertyProps) => {
   const dispatch = useAppDispatch()
 
   const editor = useStore(getEditor)
+  // The value converted to meters in the selected unit
+  const [selectedUnit, setSelectedUnit] = useState('meter')
+
+  const selectUnitsOptions = [
+    { value: 'meter', label: 'm' },
+    { value: 'kilometer', label: 'km' },
+    { value: 'inch', label: 'in' },
+    { value: 'foot', label: 'ft' }
+  ]
 
   const selectUnits = (
-    <Select defaultValue="meter" style={{ width: 80 }}>
-      <Select.Option value="meter">m</Select.Option>
-      <Select.Option value="kilometer">km</Select.Option>
-      <Select.Option value="inch">in</Select.Option>
-      <Select.Option value="foot">ft</Select.Option>
-    </Select>
+    <Select
+      defaultValue="meter"
+      style={{ width: 85 }}
+      options={selectUnitsOptions}
+      onChange={(v) => {
+        setSelectedUnit(v)
+      }}
+    ></Select>
   )
 
   const doSetScale = useEventCallback(() => {
@@ -80,7 +92,7 @@ export const CustomProperty = (props: CustomPropertyProps) => {
   })
 
   const doChangeValue = useEventCallback((newValue: any) => {
-    onChange(configurable.name, newValue)
+    onChange(configurable.name, newValue, selectedUnit)
   })
 
   const doChangeColor = useEventCallback((color: Color) => {
@@ -168,27 +180,50 @@ export const CustomProperties = () => {
     dispatch(selectColorTab(key))
   })
 
-  const doChange = useEventCallback((key: string, value: any) => {
-    if (selectedDiagramId) {
-      const selectedLine = selectionSet.cachedSelectedItems?.find(
-        (item) => item.values.renderer === 'HorizontalLine'
-      )
-      // 如果item为horizontal line，计算editor比例尺
-      if (selectedLine) {
-        const scale = value / selectedLine.values.transform.size.x
-        console.log(scale, '<---the scale of editor')
-        dispatch(changeScale(scale))
-      }
-      dispatch(
-        changeItemsAppearance(
-          selectedDiagramId,
-          selectionSet.selectedItems,
-          key,
-          value
+  const doChange = useEventCallback(
+    (key: string, value: any, unit?: string) => {
+      if (selectedDiagramId) {
+        const selectedLine = selectionSet.cachedSelectedItems?.find(
+          (item) => item.values.renderer === 'HorizontalLine'
         )
-      )
+        // 如果item为horizontal line，计算editor比例尺
+        let convertedValue = value
+        if (selectedLine) {
+          if (unit) {
+            switch (unit) {
+              case 'meter':
+                convertedValue = parseFloat(value.toFixed(2))
+                break
+              case 'kilometer':
+                convertedValue = parseFloat((1000 * value).toFixed(2))
+                break
+              case 'foot':
+                convertedValue = parseFloat((0.3048 * value).toFixed(2))
+                break
+              case 'inch':
+                convertedValue = parseFloat((0.0254 * value).toFixed(2))
+                break
+              default:
+                convertedValue = parseFloat(value.toFixed(2))
+            }
+          }
+          const scale = parseFloat(
+            (convertedValue / selectedLine.values.transform.size.x).toFixed(2)
+          )
+          console.log(convertedValue, scale, '<---the scale of editor')
+          dispatch(changeScale(scale))
+        }
+        dispatch(
+          changeItemsAppearance(
+            selectedDiagramId,
+            selectionSet.selectedItems,
+            key,
+            value
+          )
+        )
+      }
     }
-  })
+  )
 
   if (selectionSet.selectedItems.length !== 1 || !selectedDiagramId) {
     return null
