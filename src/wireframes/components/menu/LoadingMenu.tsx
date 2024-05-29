@@ -46,7 +46,10 @@ export const LoadingMenu = memo(() => {
     <>
       {/* <CustomTitle token={tokenToRead} /> */}
 
-      <ActionMenuButton displayMode="Icon" action={forLoading.newDiagram} />
+      <ActionMenuButton
+        displayMode="Icon"
+        action={forLoading.saveDiagramToImage}
+      />
       <ActionMenuButton
         displayMode="Icon"
         action={forLoading.openDiagramAction}

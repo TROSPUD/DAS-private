@@ -73,6 +73,8 @@ export const texts = {
         saveDiagram: 'Save',
         saveDiagramToFile: 'Save to File',
         saveDiagramToFileTooltip: 'Save Diagram to File',
+        exportDiagramToImage: 'Export to Image',
+        exportDiagramToImageTooltip: 'Export Diagram to Image',
         saveDiagramTooltip: 'Save Diagram',
         savingDiagram: 'Saving diagram...',
         savingDiagramDone: 'Saving diagram completed successfully.',
